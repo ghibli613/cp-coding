@@ -3,13 +3,11 @@
         {
             "type": "shell",
             "label": "C/C++: g++.exe compile active file",
-            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "command": "g++", //C:\\msys64\\mingw64\\bin\\
             "args": [
                 "-g",
-                "-Winvalid-pch",
                 "-Wall",
                 "-O2",
-                "-Wl,--stack=268435456",
                 "-Wextra",
                 "-pedantic",
                 "-std=c++20",

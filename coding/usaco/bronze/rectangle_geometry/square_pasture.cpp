@@ -23,11 +23,24 @@ typedef long long ll;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
-const double PI = 3.14159265358979323846;
-
 void solve()
 {
-    int n, k; cin >> n >> k;    
+    int min_x, max_x, min_y, max_y;
+    for(int i = 0; i < 4; i++) cin >> min_x >> min_y >> max_x >> max_y;
+
+    for(int i = 0; i < 4; i++) 
+    {
+        int x, y;
+        cin >> x >> y;
+        if(x < min_x) min_x = x;
+        if(y < min_y) min_y = y;
+        cin >> x >> y;
+        if(x > max_x) max_x = x;
+        if(y > max_y) max_y = y;
+    }
+
+    int side = max(max_x - min_x, max_y - min_y);
+    cout << side * side;
 }
 
 int main()
