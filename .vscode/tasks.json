@@ -3,7 +3,7 @@
         {
             "type": "shell",
             "label": "C/C++: g++.exe compile active file",
-            "command": "g++", 
+            "command": "g++",
             "args": [
                 "-g",
                 "-Wall",
