@@ -1,0 +1,8 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     "/Users/150854/Documents/cp-coding/coding/usaco/bronze/rectangle_geometry\block_billboard_ii.exe"
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: __Z5solvev, symObjAddr: 0x0, symBinAddr: 0x100003DA4, symSize: 0x1A0 }
+  - { offsetInCU: 0x6BB4, offset: 0x6BB4, size: 0x8, addend: 0x0, symName: __Z5solvev, symObjAddr: 0x0, symBinAddr: 0x100003DA4, symSize: 0x1A0 }
+  - { offsetInCU: 0x6D21, offset: 0x6D21, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x1A0, symBinAddr: 0x100003F44, symSize: 0x38 }
+...
