@@ -31,7 +31,7 @@ void solve()
     {
         int cnt = 0;
         for(int j = 0; j < N; j++)
-            if(abs(d[i] - d[j]) <= K) cnt++;
+            if(d[i] <= d[j] && d[j] <= K + d[i]) cnt++;
         
         result = max(result, cnt);
     }
@@ -45,7 +45,7 @@ int main()
     cin.tie(NULL);
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
 
     while(t--)
         solve();
