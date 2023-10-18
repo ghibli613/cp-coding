@@ -24,12 +24,12 @@ void solve()
             else T = true;
         bool valid = false;
         for(int j = 0; j < n; j++)
-            if((s[j][i] == 'A' && A) || (s[j][i] == 'C' && C) || (s[j][i] == 'G' && G) || (s[j][i] == 'T' && T))
+            if((p[j][i] == 'A' && A) || (p[j][i] == 'C' && C) || (p[j][i] == 'G' && G) || (p[j][i] == 'T' && T))
             {
                 valid = true;
                 break;
             }
-        if(valid) result++;
+        if(!valid) result++;
     }
 
     cout << result;
