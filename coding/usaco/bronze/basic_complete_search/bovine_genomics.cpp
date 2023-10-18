@@ -12,6 +12,27 @@ void solve()
         cin >> s[i];
     for(int i = 0; i < n; i++)
         cin >> p[i];
+
+    int result = 0;
+    for(int i = 0; i < m; i++)
+    {
+        bool A = false, C = false, G = false, T = false;
+        for(int j = 0; j < n; j++)
+            if(s[j][i] == 'A') A = true;
+            else if(s[j][i] == 'C') C = true;
+            else if(s[j][i] == 'G') G = true;
+            else T = true;
+        bool valid = false;
+        for(int j = 0; j < n; j++)
+            if((s[j][i] == 'A' && A) || (s[j][i] == 'C' && C) || (s[j][i] == 'G' && G) || (s[j][i] == 'T' && T))
+            {
+                valid = true;
+                break;
+            }
+        if(valid) result++;
+    }
+
+    cout << result;
 }
 
 int main()
