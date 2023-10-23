@@ -7,16 +7,30 @@ void solve()
 {
     string s; cin >> s;
     set<char> cows;
+    int ans = 0;
     for(int i = 0; i < 51; i++)
     {
-        if(cows.find(s[i]) != cows.end())
+        if(cows.find(s[i]) == cows.end())
         {
-            for(int j = 0; j < 52; j++)
+            set<char> tmp_cow;
+            for(int j = i + 1; j < 52; j++)
             {
-                
+                if(s[j] == s[i]) break;
+                if(cows.find(s[j]) == cows.end()) continue;
+                if(tmp_cow.find(s[j]) == tmp_cow.end())
+                {
+                    ans++;
+                    tmp_cow.insert(s[j]);
+                }
+                else
+                {
+                    ans--;
+                }
             }
         }
+        cows.insert(s[i]);
     }
+    cout << ans;
 }
 
 int main()
