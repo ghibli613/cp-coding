@@ -6,6 +6,17 @@ typedef long long ll;
 void solve()
 {
     string s; cin >> s;
+    set<char> cows;
+    for(int i = 0; i < 51; i++)
+    {
+        if(cows.find(s[i]) != cows.end())
+        {
+            for(int j = 0; j < 52; j++)
+            {
+                
+            }
+        }
+    }
 }
 
 int main()
