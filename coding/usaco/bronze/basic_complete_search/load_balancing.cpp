@@ -12,19 +12,29 @@ void solve()
     for(int i = 0; i < n; i++)
     {
         cin >> a[i].first >> a[i].second;
-        hfence.insert(a[i].first + 1);
-        vfence.insert(a[i].second + 1);
+        vfence.insert(a[i].first + 1);
+        hfence.insert(a[i].second + 1);
     }
-    for(int i : hfence)
-        for(int j : vfence)
+    int ans = 100;
+    for(int i : vfence)
+        for(int j : hfence)
         {
             int top_left = 0;
             int top_right = 0;
             int bot_right = 0;
             int bot_left = 0;
             for(int c = 0; c < n; c++)
-                if()
+                if(a[i].first < i && a[i].second < j)
+                    bot_left++;
+                else if(a[i].first < i && a[i].second > j)
+                    top_left++;
+                else if(a[i].first > i && a[i].second < j)
+                    bot_right++;
+                else top_right++;
+
+            ans = min(ans, max(bot_left, max(top_left, max(bot_right, top_right))));
         }
+    cout << ans;
 }
 
 int main()
