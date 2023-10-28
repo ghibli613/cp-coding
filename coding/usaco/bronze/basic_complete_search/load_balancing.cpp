@@ -24,11 +24,11 @@ void solve()
             int bot_right = 0;
             int bot_left = 0;
             for(int c = 0; c < n; c++)
-                if(a[i].first < i && a[i].second < j)
+                if(a[c].first < i && a[c].second < j)
                     bot_left++;
-                else if(a[i].first < i && a[i].second > j)
+                else if(a[c].first < i && a[c].second > j)
                     top_left++;
-                else if(a[i].first > i && a[i].second < j)
+                else if(a[c].first > i && a[c].second < j)
                     bot_right++;
                 else top_right++;
 
