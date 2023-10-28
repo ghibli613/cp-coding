@@ -20,10 +20,23 @@ void solve()
             continue;
 
         int curr_hours = 0;
-        bool valid = false;
+        bool valid = true;
         for(int i = 0; i < n; i++)
         {
-            if()
+            curr_hours++;
+            if(curr_hours > num_hours)
+            {
+                valid = false;
+                break;
+            }
+            else if (curr_hours == num_hours)
+                curr_hours = 0;
+        }
+
+        if(valid)
+        {
+            if(curr_hours == 0) cout << 0 << "\n";
+            else cout << n - max_hours / curr_hours << "\n";
         }
     }
 }
