@@ -23,7 +23,7 @@ void solve()
         bool valid = true;
         for(int i = 0; i < n; i++)
         {
-            curr_hours++;
+            curr_hours += p[i];
             if(curr_hours > num_hours)
             {
                 valid = false;
@@ -35,8 +35,9 @@ void solve()
 
         if(valid)
         {
-            if(curr_hours == 0) cout << 0 << "\n";
-            else cout << n - max_hours / curr_hours << "\n";
+            if(num_hours == 0) cout << 0 << "\n";
+            else cout << n - max_hours / num_hours << "\n";
+            break;
         }
     }
 }
