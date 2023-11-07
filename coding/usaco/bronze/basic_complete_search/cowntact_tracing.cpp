@@ -29,17 +29,17 @@ void solve()
         tmp_infected[patient_zero] = true;
         for (tuple<int, int, int> sh : a) 
         {
-            if (tmp_infected[get<0>(sh)]) { num_shakes[get<0>(sh)]++; }
             if (tmp_infected[get<1>(sh)]) { num_shakes[get<1>(sh)]++; }
-            if (num_shakes[get<0>(sh)] <= k && tmp_infected[get<0>(sh)]) {
-                tmp_infected[get<1>(sh)] = true;
-            }
+            if (tmp_infected[get<2>(sh)]) { num_shakes[get<2>(sh)]++; }
             if (num_shakes[get<1>(sh)] <= k && tmp_infected[get<1>(sh)]) {
-                tmp_infected[get<0>(sh)] = true;
+                tmp_infected[get<2>(sh)] = true;
+            }
+            if (num_shakes[get<2>(sh)] <= k && tmp_infected[get<2>(sh)]) {
+                tmp_infected[get<1>(sh)] = true;
             }
         }
         for (int i = 0; i < N; i++) 
-			if (tmp_infected[i] && s[i] == '1') 
+			if ((tmp_infected[i] && s[i] == '0') || (!tmp_infected[i] && s[i] == '1'))
                 return false; 
         return true;
     };
