@@ -37,7 +37,7 @@ void solve()
     int n, k; cin >> n >> k;
     vector<vector<bool>> figurine(n, vector<bool>(n));
     vector<vector<vector<bool>>> pieces(k, vector<vector<bool>> (n, vector<bool>(n)));
-    vector<vector<int>> sides(k, vector<int>(k));
+    vector<vector<int>> sides(k, vector<int>(4));
 
     for(int i = 0; i < n; i++)
         for(int j = 0; j < n; j++)
@@ -71,36 +71,21 @@ void solve()
 
     for(int i = 0; i < k - 1; i++)
         for(int j = i + 1; j < k; j++)
-            for(int idy = sides[i][3] - n + 1; idy <= sides[i][2]; idy++)
-                for(int idx = sides[i][1] - n + 1; idx <= sides[i][0]; idx++)
+            for(int idy = 0; idy <= n - 1 - sides[i][3] + sides[i][2]; idy++)
+                for(int idx = 0; idx <= n - 1 - sides[i][1] + sides[i][0]; idx++)
                 {
                     vector<vector<bool>> tmp_piece_i(n, vector<bool>(n, false));
-                    for(int v = 0; v < n; v++)
-                    {
-                        if(v + idy < 0) continue;
-                        if(v + idy > n - 1) break;
-                        for(int h = 0; h < n; h++)
-                        {
-                            if(h + idx < 0) continue;
-                            if(h + idx > n - 1) break;
-                            tmp_piece_i[v][h] = pieces[i][v+idy][h+idx];
-                        }
-                    }
-                    for(int jdy = sides[j][3] - n + 1; jdy <= sides[j][2]; jdy++)
-                        for(int jdx = sides[j][1] - n + 1; jdx <= sides[j][0]; jdx++)
+                    for(int v = sides[i][2], tmp_i = 0; v <= sides[i][3]; v++, tmp_i++)
+                        for(int h = sides[i][0], tmp_j = 0; h <= sides[i][1]; h++, tmp_j++)
+                            tmp_piece_i[idy + tmp_i][idx + tmp_j] = pieces[i][v][h];
+
+                    for(int jdy = 0; jdy <= n - 1 - sides[j][3] + sides[j][2]; jdy++)
+                        for(int jdx = 0; jdx <= n - 1 - sides[j][1] + sides[j][0]; jdx++)
                         {
                             vector<vector<bool>> tmp_piece_j(n, vector<bool>(n, false));
-                            for(int v = 0; v < n; v++)
-                            {
-                                if(v + jdy < 0) continue;
-                                if(v + jdy > n - 1) break;
-                                for(int h = 0; h < n; h++)
-                                {
-                                    if(h + jdx < 0) continue;
-                                    if(h + jdx > n - 1) break;
-                                    tmp_piece_j[v][h] = pieces[j][v+jdy][h+jdx];
-                                }
-                            }
+                            for(int v = sides[j][2], tmp_i = 0; v <= sides[j][3]; v++, tmp_i++)
+                                for(int h = sides[j][0], tmp_j = 0; h <= sides[j][1]; h++, tmp_j++)
+                                    tmp_piece_j[jdy + tmp_i][jdx + tmp_j] = pieces[j][v][h];
 
                             bool valid = check_merge_pieces(tmp_piece_i, tmp_piece_j, figurine, n);
                             if(valid)
