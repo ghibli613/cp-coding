@@ -3,18 +3,9 @@ using namespace std;
 
 typedef long long ll;
 
-void print_piece(vector<vector<bool>> a, int n)
-{
-    for(int i = 0; i < n; i++)
-    {
-        for(int j = 0; j < n; j++) cout << a[i][j];
-        cout << '\n';
-    }
-}
-
 bool check_merge_pieces(vector<vector<bool>> a, vector<vector<bool>> b, vector<vector<bool>> figurine, int n)
 {
-    vector<vector<bool>> tmp_figurine(n, vector(n, false));
+    vector<vector<bool>> tmp_figurine(n, vector<bool>(n, false));
     for(int i = 0; i < n; i++)
         for(int j = 0; j < n; j++)
         {
