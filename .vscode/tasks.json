@@ -9,6 +9,7 @@
                 "-Wall",
                 "-O2",
                 "-Wextra",
+                "-Wfloat-equal",
                 "-pedantic",
                 "-std=c++20",
                 "-D_GLIBCXX_DEBUG",
