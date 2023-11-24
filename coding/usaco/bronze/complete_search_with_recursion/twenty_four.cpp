@@ -63,8 +63,6 @@ void solve()
 
                         if(third <= 24) ans = max(ans, third);
                     }
-            // for(int i = 0; i < 4; i++) cout << hand[i] << ' ';
-            //     cout << '\n';
         } while(next_permutation(hand.begin(), hand.end()));
 
         cout << ans << "\n";
