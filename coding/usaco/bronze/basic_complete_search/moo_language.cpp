@@ -18,7 +18,7 @@ void solve()
     }
 
     int ans = 0;
-    int t1, t2, combine, tack_end;
+    int t1 = 0, t2 = 0, combine = 0, tack_end = 0;
     for(int type_1 = 0; type_1 <= (int)iverb.size(); type_1++)
     {
     	int noun_cnt = (int)noun.size(), conj_cnt = (int)conj.size(), period = p, comma = c, cur_words = 0;
