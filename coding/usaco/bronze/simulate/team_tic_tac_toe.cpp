@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#include "../../../debug.h"
+
 typedef long long ll;
 
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
@@ -24,7 +24,7 @@ void solve()
 
 	set<char> single;
 	set<pair<char, char>> team;
-	// dbg(s);
+	
 	for(int i = 0; i < 3; i++)
 	{ 
 		
