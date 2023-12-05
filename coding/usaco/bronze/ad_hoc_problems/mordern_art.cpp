@@ -27,7 +27,7 @@ void solve()
             for(int j = 0; j < n; j++)
                 if(canvas[i][j] == color) 
                     l = min(j, l), r = max(r, j), t = min(t, i), b = max(b, i);
-        // cout << l << r << t << b << " ";
+                
         for(int i = t; i <= b; i++)
             for(int j = l; j <= r; j++)
                 inside.insert(canvas[i][j]);
