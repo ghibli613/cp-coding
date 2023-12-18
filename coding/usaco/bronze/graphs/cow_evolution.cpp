@@ -25,7 +25,7 @@ void solve()
 
 	vector<string> all_chars(all_char_set.begin(), all_char_set.end());
 
-	for (int a = 0; a < (int)all_chars.size(); a++) {
+	for (int a = 0; a < (int)all_chars.size() - 1; a++) {
 		for (int b = a + 1; b < (int)all_chars.size(); b++) {
 			bool both = false, only_a = false, only_b = false;
 			for (const set<string> &c : cows) {

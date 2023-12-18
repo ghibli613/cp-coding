@@ -22,9 +22,6 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always"
             }
         },
         {
@@ -41,9 +38,6 @@
             "group": {
                 "kind": "test",
                 "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always"
             }
         },
         {
@@ -58,9 +52,6 @@
             "group": {
                 "kind": "none",
                 "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always"
             }
         }
     ]
