@@ -1,7 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int main() {
+typedef long long ll;
+
+void solve()
+{
 	int n;
 	cin >> n;
 
@@ -22,10 +25,8 @@ int main() {
 
 	vector<string> all_chars(all_char_set.begin(), all_char_set.end());
 
-	// Iterate over every pair of characteristics and check if the tree is
-	// evolutionarily proper relative to that pair
-	for (int a = 0; a < all_chars.size(); a++) {
-		for (int b = a + 1; b < all_chars.size(); b++) {
+	for (int a = 0; a < (int)all_chars.size(); a++) {
+		for (int b = a + 1; b < (int)all_chars.size(); b++) {
 			bool both = false, only_a = false, only_b = false;
 			for (const set<string> &c : cows) {
 				bool has_a = c.count(all_chars[a]);
@@ -40,18 +41,26 @@ int main() {
 				}
 			}
 
-			/*
-			 * If we find a cow which has the characteristic a,
-			 * another cow which has the characteristic b, and
-			 * another cow with both characteristics a and b, then
-			 * the tree isn't evolutionarily proper.
-			 */
 			if (only_a && only_b && both) {
 				cout << "no" << endl;
-				return 0;
+				return;
 			}
 		}
 	}
 
 	cout << "yes" << endl;
+}
+
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	int t = 1;
+	// cin >> t;
+
+	while(t--)
+		solve();
+
+	return 0;
 }

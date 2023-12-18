@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "C/C++: Compile",
-            "type": "shell",
+            "type": "cppbuild",
             "command": "g++",
             "args": [
                 "-g",
