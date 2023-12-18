@@ -25,6 +25,9 @@
             },
             "presentation": {
                 "reveal": "always"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
             }
         },
         {
@@ -44,12 +47,15 @@
             },
             "presentation": {
                 "reveal": "always"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
             }
         },
         {
             "label": "C/C++: Stress Test",
             "type": "shell",
-            "command": "${workspaceFolder}/stress",
+            "command": "${workspaceFolder}/stress.sh",
             "args": [
                 "${fileDirname}/${fileBasenameNoExtension}_gen",
                 "${fileDirname}/${fileBasenameNoExtension}",
