@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "C/C++: Compile and Run",
+            "label": "C/C++: Compile",
             "type": "shell",
             "command": "g++",
             "args": [
@@ -24,8 +24,7 @@
                 "isDefault": true
             },
             "presentation": {
-                "reveal": "always",
-                "panel": "new"
+                "reveal": "always"
             }
         },
         {
@@ -44,14 +43,13 @@
                 "isDefault": true
             },
             "presentation": {
-                "reveal": "always",
-                "panel": "new"
+                "reveal": "always"
             }
         },
         {
             "label": "C/C++: Stress Test",
             "type": "shell",
-            "command": "stress",
+            "command": "${workspaceFolder}/stress",
             "args": [
                 "${fileDirname}/${fileBasenameNoExtension}_gen",
                 "${fileDirname}/${fileBasenameNoExtension}",
@@ -62,8 +60,7 @@
                 "isDefault": true
             },
             "presentation": {
-                "reveal": "always",
-                "panel": "new"
+                "reveal": "always"
             }
         }
     ]
