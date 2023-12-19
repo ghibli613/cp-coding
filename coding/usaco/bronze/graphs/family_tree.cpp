@@ -17,7 +17,6 @@ void solve()
 		edge[u] = v;
 	}
 
-	// Map of the ancestors of each node & their distances
 	vector<unordered_map<string, int>> ancestors(2);
 	for (int c = 0; c < 2; c++) 
     {
