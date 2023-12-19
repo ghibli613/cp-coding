@@ -22,7 +22,11 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+            },
         },
         {
             "label": "C/C++: Run",
@@ -38,6 +42,10 @@
             "group": {
                 "kind": "test",
                 "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
             }
         },
         {
@@ -52,7 +60,11 @@
             "group": {
                 "kind": "none",
                 "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
             }
         }
-    ]
+    ],
 }
