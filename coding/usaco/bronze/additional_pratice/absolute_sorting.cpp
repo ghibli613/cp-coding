@@ -9,18 +9,26 @@ void solve()
     vector<ll> a(n);
     for(int i = 0; i < n; i++) cin >> a[i];
 
-    int ans = (int)abs(a[0] - a[1]) / 2;
-    if(a[0] > a[1]) ans = a[0] - ans;
-    else ans += a[0];
+    pair<int, int> condition{INT_MIN, INT_MAX};
     
-    for(int i = 1; i < n - 1; i++)
-        if(abs(a[i + 1] - ans) < abs(a[i] - ans))
+    for(int i = 1; i < n; i++)
+    {
+        if(a[i - 1] < a[i])
         {
-            cout << -1 << "\n";
-            return;
+            int tmp = (a[i] + a[i - 1]) / 2;
+            if(tmp < condition.second) condition.second = tmp;
         }
+        else if(a[i - 1] > a[i])
+        {
+            int tmp = (a[i] + a[i - 1]) / 2;
+            if((a[i] + a[i - 1]) % 2 != 0) tmp++;
+            if(tmp > condition.first) condition.first = tmp;
+        }
+    }
 
-    cout << ans << "\n";
+    if(condition.first > condition.second) cout << -1 << '\n';
+    else if(condition.first == INT_MIN) cout << condition.second << '\n';
+    else cout << condition.first << '\n';
 }
 
 int main()
