@@ -27,7 +27,11 @@ void solve()
     }
 
     if(condition.first > condition.second) cout << -1 << '\n';
-    else if(condition.first == INT_MIN) cout << condition.second << '\n';
+    else if(condition.first == INT_MIN)
+    {
+        if(condition.second == INT_MAX) cout << 0 << '\n';
+        else cout << condition.second << '\n';
+    }
     else cout << condition.first << '\n';
 }
 
