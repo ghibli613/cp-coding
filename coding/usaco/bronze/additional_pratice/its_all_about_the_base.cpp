@@ -7,9 +7,7 @@ int MAXB = 15000;
 
 int evaluate(const string& num, int base) 
 {
-    return (num[0] - '0') * base * base +
-            (num[1] - '0') * base +
-            (num[2] - '0');
+    return (num[0] - '0') * base * base + (num[1] - '0') * base + (num[2] - '0');
 }
 
 void solve()
@@ -24,11 +22,12 @@ void solve()
     {
         int num_x = evaluate(num_in_x, X);
         int num_y = evaluate(num_in_y, Y);
-        if (num_x < num_y) {
+        if (num_x < num_y)
             X++;
-        } else if (num_y < num_x) {
+        else if (num_y < num_x)
             Y++;
-        } else {
+        else 
+        {
             cout << X << ' ' << Y << '\n';
             break;
         }
