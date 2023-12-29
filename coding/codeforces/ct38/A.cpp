@@ -10,13 +10,36 @@ const double PI = 3.14159265358979323846;
 
 void solve()
 {
-    int n; cin >> n; 
-    vector<int> v(n-1);
-    for(int i = 0; i < n-1; i++) cin >> v[i];
-    int a, b; cin >> a >> b;
-    int ans = 0;
-    for(int i = a-1; i < b-1; i++) ans += v[i];
-    cout << ans;
+    int n; cin >> n;
+    int log = 30;
+    vector<int> cnt(log, 0);
+    vector<int> ans;
+    for(int j = 0; j < n; j++)
+    {
+        int t; ll v; cin >> t >> v;
+        bool valid = true;
+        if(t == 1) cnt[v]++;
+        else
+        {
+            int nw = 0;
+            for(int i = 0; i < log; i++)
+            {
+                int r = (v % (2 << i)) / (1 << i); 
+                if(r > nw + cnt[i])
+                {
+                    ans.push_back(0);
+                    valid = false;
+                    break;
+                }
+                v -= r;
+                nw = (nw + cnt[i] - r) / 2;
+            }
+            if(valid) ans.push_back(nw >= (v >> 30));
+        }
+    }
+    for(int i = 0; i < (int)ans.size(); i++)
+        if(ans[i]) cout << "YES\n";
+        else cout << "NO\n";
 }
 
 int main()
