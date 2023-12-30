@@ -9,7 +9,7 @@ void solve()
     vector<ll> a(n);
     for(int i = 0; i< n; i++) cin >> a[i];
     
-    unordered_set<ll> minus;
+    set<ll> minus;
     ll sum_odd = 0, sum_even = 0;
     for(int i = 0; i < n; i++)
     {
@@ -21,7 +21,7 @@ void solve()
             cout << "YES\n";
             return;
         }
-        if(minus.count(tmp))
+        if(minus.find(tmp) != minus.end())
         {
             cout << "YES\n";
             return;

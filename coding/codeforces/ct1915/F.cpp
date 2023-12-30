@@ -3,28 +3,26 @@ using namespace std;
 
 typedef long long ll;
 
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+ 
+typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, less<int>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> ordered_set;
+
 void solve()
 {
     int n; cin >> n;
-    vector<pair<ll, int>> events(2 * n);
+    vector<pair<ll, ll>> segments(n);
+    for(int i = 0; i < n; i++)
+        cin >> segments[i].second >> segments[i].first;
+    sort(segments.begin(), segments.end());
+    ordered_set st;
+    ll ans = 0;
     for(int i = 0; i < n; i++)
     {
-        ll a, b; cin >> a >> b;
-        events[i * 2] = {a, 0};
-        events[i * 2 + 1] = {b, 1};
+        ans += st.size() - st.order_of_key(segments[i].second);
+        st.insert(segments[i].second);
     }
-    sort(events.begin(), events.end());
-    ll cnt = 0, seg = 0;
-    for(int i = 0; i < 2 * n; i++)
-    {
-        if(events[i].second == 0) seg++;
-        else
-        {
-            seg--;
-            cnt += seg;
-        }
-    }
-    cout << cnt << '\n';
+    cout << ans << '\n';
 }
 
 int main()
