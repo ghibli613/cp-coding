@@ -43,10 +43,40 @@
         "description": "template"
     },
 	"debug": {
-    	"prefix": "dbg",
+    	"prefix": "debug",
     	"body": [
-			"#include\"../../debug.h\"",
+			"\nvoid __print(int x) {cerr << x;}",
+			"void __print(long x) {cerr << x;}",
+			"void __print(long long x) {cerr << x;}"
+			"void __print(unsigned x) {cerr << x;}",
+			"void __print(unsigned long x) {cerr << x;}",
+			"void __print(unsigned long long x) {cerr << x;}",
+			"void __print(float x) {cerr << x;}",
+			"void __print(double x) {cerr << x;}",
+			"void __print(long double x) {cerr << x;}",
+			"void __print(char x) {cerr << '\\'' << x << '\\'';}",
+			"void __print(const char *x) {cerr << '\\\"' << x << '\\\"';}",
+			"void __print(const string &x) {cerr << '\\\"' << x << '\\\"';}",
+			"void __print(bool x) {cerr << (x ? \"true\" : \"false\");}\n",
+			"template<typename T, typename V>",
+			"void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << \", \"; __print(x.second); cerr << '}';}",
+			"template<typename T>",
+			"void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? \", \" : \"\"), __print(i); cerr << \"}\";}",
+			"void _print() {cerr << \"]\\n\";}",
+			"template <typename T, typename... V>",
+			"void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << \", \"; _print(v...);}",
+
+			"#define dbg(...) cerr<<__func__<<\":\"<<__LINE__<<\" [\" << #__VA_ARGS__ << \"] = [\"; _print(__VA_ARGS__);\n",
         ],
         "description": "debug"
+    },
+	"orderSet": {
+    	"prefix": "orderSet",
+    	"body": [
+			"\n#include <ext/pb_ds/assoc_container.hpp>",
+			"#include <ext/pb_ds/tree_policy.hpp>",
+ 			"typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, less<int>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> ordered_set;\n",
+        ],
+        "description": "orderSet"
     }
 }
