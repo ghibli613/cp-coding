@@ -22,7 +22,8 @@ void solve()
     int l, r; cin >> l >> r;
     for(int j = 0; j < 3; j++)
     {
-      cout << a[r][j] - a[l - 1][j] << ' ';
+      if(j != 2) cout << a[r][j] - a[l - 1][j] << ' ';
+      else cout << a[r][j] - a[l - 1][j];
     }
     cout << '\n';
   }

@@ -30,7 +30,7 @@ void solve()
     {
         int max_speed;
         cin >> max_speed;
-        cout << fastest_time(k, max_speed);
+        cout << fastest_time(k, max_speed) << '\n';
     }
 }
 
@@ -40,7 +40,7 @@ int main()
     cin.tie(NULL);
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
 
     while(t--)
         solve();

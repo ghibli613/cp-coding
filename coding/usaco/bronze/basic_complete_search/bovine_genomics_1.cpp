@@ -3,6 +3,14 @@ using namespace std;
 
 typedef long long ll;
 
+int convert_char(char ch)
+{
+    if(ch == 'A') return 0;
+    else if(ch == 'C') return 1;
+    else if(ch == 'G') return 2;
+    else return 3;
+}
+
 void solve()
 {
     int n, m; cin >> n >> m;
@@ -17,31 +25,25 @@ void solve()
         for(int j = i + 1; j < m - 1; j++)
             for(int t = j + 1; t < m; t++)
             {
-                set<string> set_spot_cows;
+                vector<int> check(4*4*4);
                 for(int x = 0; x < n; x++)
                 {
-                    string s;
-                    s.push_back(spot_cows[x][i]);
-                    s.push_back(spot_cows[x][j]);
-                    s.push_back(spot_cows[x][t]);
-                    set_spot_cows.insert(s);
+                    int valid = convert_char(spot_cows[x][i]) * 16 + convert_char(spot_cows[x][j]) * 4 + convert_char(spot_cows[x][t]);
+                    check[valid] = 1;
                 }
-                bool check = false;
+                bool check1 = false;
                 for(int x = 0; x < n; x++)
                 {
-                    string s;
-                    s.push_back(plain_cows[x][i]);
-                    s.push_back(plain_cows[x][j]);
-                    s.push_back(plain_cows[x][t]);
-                    if(set_spot_cows.find(s) != set_spot_cows.end())
+                    int valid = convert_char(plain_cows[x][i]) * 16 + convert_char(plain_cows[x][j]) * 4 + convert_char(plain_cows[x][t]);
+                    if(check[valid])
                     {
-                        check = true;
+                        check1 = true;
                         break;
                     }
                 }
-                if(!check) ans++;
+                if(!check1) ans++;
             }
-    cout << ans;
+    cout << ans << '\n';
 }
 
 int main()

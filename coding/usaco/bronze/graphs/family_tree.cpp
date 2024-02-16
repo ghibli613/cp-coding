@@ -9,7 +9,7 @@ void solve()
 	vector<string> cows(2);
 	cin >> n >> cows[0] >> cows[1];
 
-	unordered_map<string, string> edge;
+	map<string, string> edge;
 	for (int i = 0; i < n; ++i) 
     {
 		string u, v;
@@ -17,7 +17,7 @@ void solve()
 		edge[u] = v;
 	}
 
-	vector<unordered_map<string, int>> ancestors(2);
+	vector<map<string, int>> ancestors(2);
 	for (int c = 0; c < 2; c++) 
     {
 		string at = cows[c];
@@ -45,7 +45,9 @@ void solve()
     }
 
     if(common.empty())
+    {
         cout << "NOT RELATED";
+    }
     else if(common == cows[1] || common == cows[0])
     {
         if(common == cows[0])
@@ -71,7 +73,9 @@ void solve()
         if(dist0 == 1)
         {
             if(dist1 == 1)
-                cout << "SILBLINGS";
+            {
+                cout << "SIBLINGS";
+            }
             else
             {
                 cout << cows[0] << " is the ";
@@ -80,8 +84,12 @@ void solve()
                 cout << "aunt of " << cows[1];
             } 
         }
-        else cout << "COUSINS";
+        else 
+        {
+            cout << "COUSINS";
+        }
     }
+    cout << endl;
 }
 
 int main()

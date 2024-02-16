@@ -1,32 +1,11 @@
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <cassert>
-#include <chrono>
-#include <climits>
-#include <cmath>
-#include <complex>
-#include <cstring>
-#include <functional>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <numeric>
-#include <queue>
-#include <random>
-#include <set>
-#include <vector>
+#include<bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
 
-template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
-template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
-
 void solve()
 {
-    int min_x, max_x, min_y, max_y;
-    for(int i = 0; i < 4; i++) cin >> min_x >> min_y >> max_x >> max_y;
+    int min_x = INT_MAX, max_x = INT_MIN, min_y = INT_MAX, max_y = INT_MIN;
 
     for(int i = 0; i < 4; i++) 
     {
@@ -34,13 +13,12 @@ void solve()
         cin >> x >> y;
         if(x < min_x) min_x = x;
         if(y < min_y) min_y = y;
-        cin >> x >> y;
         if(x > max_x) max_x = x;
         if(y > max_y) max_y = y;
     }
 
     int side = max(max_x - min_x, max_y - min_y);
-    cout << side * side;
+    cout << side * side;    
 }
 
 int main()
@@ -56,3 +34,4 @@ int main()
 
     return 0;
 }
+

@@ -2,22 +2,13 @@
 using namespace std;
 
 typedef long long ll;
-
 void solve()
 {
-    int n; cin >> n;
-    vector<int> a(n);
-    for(int i = 0; i < n; i++) cin >> a[i];
-    vector<pair<int, int>> p(n);
-    for(int i = 0; i < n; i++)
-    {
-        p[i].first = a[i];
-        p[i].second = i;
-    }
-    sort(p.begin(), p.end(), greater<int>());
-    vector<int> l(n);
-    l[0] = 0; int max_e = p[0].first;
-    
+    double k, x; cin >> k >> x;
+    double a; cin >> a;
+    double a_ = (a - x * (k / (k - 1)));
+    if(a_ > 0 && k > x) cout << "YES\n";
+    else cout << "NO\n";
 }
 
 int main()
@@ -33,3 +24,4 @@ int main()
 
     return 0;
 }
+

@@ -7,7 +7,7 @@ void solve()
 {
     int n; cin >> n; 
     vector<vector<char>> canvas(n, vector<char>(n));
-    unordered_set<char> colors;    vector<bool> works(9, false);
+    set<char> colors;    vector<bool> works(9, false);
 
     for(int i = 0; i < n; i++)
         for(int j = 0; j < n; j++)
@@ -21,8 +21,8 @@ void solve()
 
     for(char color : colors)
     {
-        unordered_set<char> inside;
-        int l = 8, r = 0, t = 8, b = 0;
+        set<char> inside;
+        int l = 9, r = 0, t = 9, b = 0;
         for(int i = 0; i < n; i++)
             for(int j = 0; j < n; j++)
                 if(canvas[i][j] == color) 
@@ -40,7 +40,7 @@ void solve()
     for(int i = 0; i < 9; i++)
         if(works[i]) ans++;
 
-    cout << ans;
+    cout << ans << '\n';
 }
 
 int main()

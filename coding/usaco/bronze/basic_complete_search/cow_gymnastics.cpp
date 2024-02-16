@@ -9,7 +9,10 @@ void solve()
     vector<vector<int>> a(k, vector<int>(n));
     for(int i = 0; i < k; i++)
         for(int j = 0; j < n; j++)
-            cin >> a[i][j];
+        {
+            int tmp; cin >> tmp;
+            a[i][tmp - 1] = j;
+        }
     
     int result = 0;
     for(int i = 0; i < n; i++)
@@ -23,10 +26,13 @@ void solve()
                     check = false;
                     break;
                 }
-            if(check) result++;
+            if(check) 
+            {
+                result++;
+            }
         }
     }
-    cout << result;
+    cout << result << '\n';
 }
 
 int main()

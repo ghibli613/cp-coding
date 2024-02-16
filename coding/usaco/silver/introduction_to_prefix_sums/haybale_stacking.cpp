@@ -5,7 +5,7 @@ typedef long long ll;
 
 void solve()
 {
-
+    int n, k; cin >> n >> k;
 }
 
 int main()
@@ -14,10 +14,11 @@ int main()
     cin.tie(NULL);
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
 
     while(t--)
         solve();
 
     return 0;
 }
+

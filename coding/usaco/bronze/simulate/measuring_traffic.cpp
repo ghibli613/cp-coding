@@ -75,7 +75,8 @@ void solve()
             }
         }
     }
-    cout << seg2_min << " " << seg2_max << "\n" << seg1_min << " " << seg1_max;
+    cout << max(0, seg2_min) << " " << seg2_max << "\n" << max(0, seg1_min) << " " << seg1_max;
+    cout << '\n';
 }
 
 int main()
