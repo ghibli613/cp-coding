@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
  
- read -p 'The number of test cases: ' num_tests
+read -p 'The number of test cases: ' num_tests
 
 for ((testNum=0;testNum<$num_tests;testNum++))
 do
