@@ -1,0 +1,82 @@
+{
+	// Place your code workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"template": {
+    	"prefix": "gfg",
+    	"body": [
+			"#include<bits/stdc++.h>",
+			"using namespace std;\n",
+			"typedef long long ll;\n",
+			"void solve()",
+			"{",
+			"\t$0",
+			"}",
+			"",
+			"int main()",
+			"{",
+				"\tios::sync_with_stdio(false);",
+				"\tcin.tie(NULL);",
+				"",
+				"\tint t = 1;",
+				"\tcin >> t;",
+				"",
+				"\twhile(t--)",
+				"\t\tsolve();",
+				"",
+				"\treturn 0;",
+          	"}"
+        ],
+        "description": "template"
+    },
+	"debug": {
+    	"prefix": "debug",
+    	"body": [
+			"\nvoid __print(int x) {cerr << x;}",
+			"void __print(long x) {cerr << x;}",
+			"void __print(long long x) {cerr << x;}",
+			"void __print(unsigned x) {cerr << x;}",
+			"void __print(unsigned long x) {cerr << x;}",
+			"void __print(unsigned long long x) {cerr << x;}",
+			"void __print(float x) {cerr << x;}",
+			"void __print(double x) {cerr << x;}",
+			"void __print(long double x) {cerr << x;}",
+			"void __print(char x) {cerr << '\\'' << x << '\\'';}",
+			"void __print(const char *x) {cerr << '\\\"' << x << '\\\"';}",
+			"void __print(const string &x) {cerr << '\\\"' << x << '\\\"';}",
+			"void __print(bool x) {cerr << (x ? \"true\" : \"false\");}\n",
+			"template<typename T, typename V>",
+			"void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << \", \"; __print(x.second); cerr << '}';}",
+			"template<typename T>",
+			"void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? \", \" : \"\"), __print(i); cerr << \"}\";}",
+			"void _print() {cerr << \"]\\n\";}",
+			"template <typename T, typename... V>",
+			"void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << \", \"; _print(v...);}",
+
+			"#define dbg(...) cerr<<__func__<<\":\"<<__LINE__<<\" [\" << #__VA_ARGS__ << \"] = [\"; _print(__VA_ARGS__);\n",
+        ],
+        "description": "debug"
+    },
+	"orderSet": {
+    	"prefix": "orderSet",
+    	"body": [
+			"\n#include <ext/pb_ds/assoc_container.hpp>",
+			"#include <ext/pb_ds/tree_policy.hpp>",
+ 			"typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, less<int>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> ordered_set;\n",
+        ],
+        "description": "orderSet"
+    }
+}
