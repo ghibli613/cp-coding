@@ -6,12 +6,12 @@ typedef long long ll;
 void solve()
 {
     int n; cin >> n;
-    vector<int> a(n);
-    for(int &i : a) cin >> i;
-    vector<int> prefix_sum(n + 1);
-    map<int, int> mm, mm1;
+    vector<ll> a(n);
+    for(ll &i : a) cin >> i;
+    vector<ll> prefix_sum(n + 1);
+    map<ll, int> mm, mm1;
     mm[0] = 1;
-    int ans = 0;
+    ll ans = 0;
     for(int i = 1; i <= n; i++) 
     {
         prefix_sum[i] = a[i - 1] ^ prefix_sum[i - 1];
