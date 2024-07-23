@@ -1,99 +1,51 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
 
 void solve(int n, int m)
 {
-    vector<vector<int>> calendar(1e6 + 2);
-    vector<int> one_task_start(n), one_task_end(n);
-    vector<int> multi_task_start(m), multi_task_end(m), inteval(m);
-    for (int i = 0; i < n; i++)
-        cin >> one_task_start[i] >> one_task_end[i];
-
-    for (int i = 0; i < m; i++)
+    vector<bool> calender(1000001);
+    bool flag = false;
+    for(int i = 0; i < n; i++)
     {
-        cin >> multi_task_start[i] >> multi_task_end[i] >> inteval[i];
-        if (inteval[i] < multi_task_end[i] - multi_task_start[i])
+        int start, end; cin >> start >> end;
+        if(!flag)
         {
-            cout << "CONFLICT\n";
-            return;
+            if(end > 1000000) end = 1000000;
+            for(int i = start; i < end; i++) 
+            {
+                if(calender[i])
+                {
+                    flag = true;
+                    break;
+                }
+                calender[i] = true;
+            }
         }
     }
 
-    for (int i = 0; i < n; i++)
+    for(int i = 0; i < m; i++)
     {
-        if ((int)calendar[one_task_start[i]].size() < 2 && (int)calendar[one_task_end[i]].size() < 2)
+        int s, e, r; cin >> s >> e >> r;
+        while(!flag && s < 1000000)
         {
-            calendar[one_task_start[i]].push_back(i);
-            calendar[one_task_end[i]].push_back(i);
-        }
-        else
-        {
-            cout << "CONFLICT\n";
-            return;
+            if(e > 1000000) e = 1000000;
+            for(int i = s; i < e; i++) 
+            {
+                if(calender[i])
+                {
+                    flag = true;
+                    break;
+                }
+                calender[i] = true;
+            }
+            s += r;
+            e += r;
         }
     }
-
-    for (int i = 0; i < m; i++)
-    {
-        do
-        {
-            if ((int)calendar[multi_task_start[i]].size() < 2 && (int)calendar[multi_task_end[i]].size() < 2)
-            {
-                calendar[multi_task_start[i]].push_back(i);
-                calendar[multi_task_end[i]].push_back(i);
-            }
-            else
-            {
-                cout << "CONFLICT\n";
-                return;
-            }
-
-            multi_task_start[i] += inteval[i];
-            multi_task_end[i] += inteval[i];
-            if (multi_task_end[i] > 1e6)
-                multi_task_end[i] = 1e6 + 1;
-        } while (multi_task_start[i] <= 1e6);
-    }
-    // cout << calendar[10].size();
-    int flag = -1;
-    for (int i = 0; i <= 1e6; i++)
-    {
-        if (flag == -1 && calendar[i].size() == 2)
-        {
-            cout << "CONFLICT\n";
-            return;
-        }
-        else if (flag == -1 && calendar[i].size() == 1)
-        {
-            flag = calendar[i][0];
-        }
-        else if (flag != -1 && calendar[i].size() == 2)
-        {
-            if (calendar[i][0] == flag)
-                flag = calendar[i][1];
-            else if (calendar[i][1] == flag)
-                flag = calendar[i][0];
-            else
-            {
-                cout << "CONFLICT\n";
-                return;
-            }
-        }
-        else if (flag != -1 && calendar[i].size() == 1)
-        {
-            if (calendar[i][0] == flag)
-                flag = -1;
-            else
-            {
-                cout << "CONFLICT\n";
-                return;
-            }
-        }
-        // cout << flag << ' ';
-    }
-    cout << "NO CONFLICT\n";
+    if(!flag) printf("NO CONFLICT\n");
+    else printf("CONFLICT\n");
 }
 
 int main()
@@ -102,14 +54,13 @@ int main()
     cin.tie(NULL);
 
     int n, m;
-
-    while (true)
+    
+    while(true)
     {
         cin >> n >> m;
-        if (n == 0 && m == 0)
-            break;
+        if(n == 0 && m == 0) break;
         solve(n, m);
     }
-
+        
     return 0;
 }
