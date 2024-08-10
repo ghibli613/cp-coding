@@ -78,5 +78,39 @@
  			"typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, less<int>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> ordered_set;\n",
         ],
         "description": "orderSet"
-    }
+    },
+	"dijkstra": {
+    	"prefix": "dijkstra",
+    	"body": [
+			"\nvoid dijkstra(int s)",
+			"{",
+				"\tdist.assign(n, INF);",
+				"\tpath.assign(n, -1);",
+				"\tpriority_queue<pii, vector<pii>, greater<pii>> pq;",
+				"\tpq.push({0, s});",
+				"\tdist[s] = 0;",
+
+				"\twhile(!pq.empty())",
+				"\t{",
+					"\t\tpii tmp = pq.top(); pq.pop();",
+
+					"\t\tint u = tmp.second;",
+					"\t\tif(tmp.first != dist[u]) continue;",
+
+					"\t\tfor(int i = 0; i < (int)adj[u].size(); i++)",
+					"\t\t{",
+						"\t\t\tint v = adj[u][i].first;",
+						"\t\t\tint w = adj[u][i].second;",
+						"\t\t\tif(dist[v] > dist[u] + w)",
+						"\t\t\t{",
+							"\t\t\t\tdist[v] = dist[u] + w;",
+							"\t\t\t\tpath[v] = u;",
+							"\t\t\t\tpq.push({dist[v], v});",
+						"\t\t\t}",
+					"\t\t}",
+				"\t}",
+			"}",
+        ],
+        "description": "dijkstra"
+    },
 }
