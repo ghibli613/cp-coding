@@ -20,7 +20,8 @@
     	"body": [
 			"#include<bits/stdc++.h>",
 			"using namespace std;\n",
-			"typedef long long ll;\n",
+			"typedef long long ll;",
+			"typedef pair<int, int> pii;\n",
 			"void solve()",
 			"{",
 			"\t$0",
