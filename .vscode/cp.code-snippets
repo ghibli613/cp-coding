@@ -80,6 +80,95 @@
         ],
         "description": "orderSet"
     },
+	"bfs": {
+    	"prefix": "bfs",
+    	"body": [
+			"\nvoid bfs(int s)",
+			"{",
+				"\tint sz = adj.size();",
+				"\tpath.assign(sz, -1);",
+				"\tvisited.assign(sz, false);",
+				"\tqueue<int> q;",
+
+				"\n\tq.push(s);",
+				"\tvisited[s] = true;",
+
+				"\n\tint u, v;",
+				"\twhile(!q.empty())",
+				"\t{",
+					"\t\tu = q.front();",
+					"\t\tq.pop();",
+
+					"\t\tfor(int i = 0; i < (int)adj[u].size(); i++)",
+					"\t\t{",
+						"\t\t\tint v = adj[u][i];",
+						"\t\t\tif(!visited[v])",
+						"\t\t\t{",
+							"\t\t\t\tvisited[v] = true;",
+							"\t\t\t\tpath[v] = u;",
+							"\t\t\t\tq.push(v);",
+						"\t\t\t}",
+					"\t\t}",
+				"\t}",
+			"}",
+        ],
+        "description": "bfs"
+    },
+	"dfs_stack": {
+    	"prefix": "dfs_stack",
+    	"body": [
+			"\nvoid dfs(int s)",
+			"{",
+				"\tint sz = adj.size();",
+				"\tpath.assign(sz, -1);",
+				"\tvisited.assign(sz, false);",
+				"\tstack<int> st;",
+
+				"\n\tst.push(s);",
+				"\tvisited[s] = true;",
+
+				"\n\tint u, v;",
+				"\twhile(!st.empty())",
+				"\t{",
+					"\t\tu = st.top();",
+					"\t\tst.pop();",
+
+					"\t\tfor(int i = 0; i < (int)adj[u].size(); i++)",
+					"\t\t{",
+						"\t\t\tint v = adj[u][i];",
+						"\t\t\tif(!visited[v])",
+						"\t\t\t{",
+							"\t\t\t\tvisited[v] = true;",
+							"\t\t\t\tpath[v] = u;",
+							"\t\t\t\tst.push(v);",
+						"\t\t\t}",
+					"\t\t}",
+				"\t}",
+			"}",
+        ],
+        "description": "dfs with stack"
+    },
+	"dfs_recursive": {
+    	"prefix": "dfs_recursive",
+    	"body": [
+			"\nvoid dfs(int s)",
+			"{",
+				"\tvisited[s] = true;",
+
+				"\n\tfor(int i = 0; i < (int)adj[s].size(); i++)",
+				"\t{",
+					"\t\tint v = adj[s][i];",
+
+					"\n\t\tif(!visited[v])",
+					"\t\t{",
+						"\t\t\tpath[v] = s;",
+						"\t\t\tdfs(v);",
+					"\t\t}",
+				"\t}",
+			"}",
+        ],
+        "description": "dfs with recursive"
+    },
 	"dijkstra": {
     	"prefix": "dijkstra",
     	"body": [
@@ -114,6 +203,54 @@
         ],
         "description": "dijkstra"
     },
+	"bellmanFord": {
+    	"prefix": "bellmanFord",
+    	"body": [
+			"\nstruct Edge",
+			"{",
+				"\tint u, v, w;",
+				"\tEdge(int u = 0, int v = 0, int w = 0)",
+					"\t\t: u(u), v(v), w(w) {}",
+			"};",
+
+			"\nint bellmanFord(vector<Edge> &edges, int n, int m, int s)",
+			"{",
+				"\tdist.assign(n + 1, INF);",
+				"\tpath.assign(n + 1, -1);",
+				"\tdist[s] = 0;",
+
+				"\tint u, v, w;",
+				"\tfor(int i = 1; i < n; i++)",
+				"\t{",
+					"\t\tfor(int j = 0; j < m; j++)",
+					"\t\t{",
+
+						"\t\t\tu = edges[j].u;",
+						"\t\t\tv = edges[j].v;",
+						"\t\t\tw = edges[j].w;",
+						"\t\t\tif(dist[u] != INF && dist[v] > dist[u] + w)",
+						"\t\t\t{",
+							"\t\t\t\tdist[v] = dist[u] + w;",
+							"\t\t\t\tpath[v] = u;",
+						"\t\t\t}",
+					"\t\t}",
+				"\t}",
+				"\tfor(int j = 0; j < m; j++)",
+				"\t{",
+					"\t\tu = edges[j].u;",
+					"\t\tv = edges[j].v;",
+					"\t\tw = edges[j].w;",
+					"\t\tif(dist[u] != INF && dist[v] > dist[u] + w)",
+					"\t\t{",
+						"\t\t\treturn false;",
+					"\t\t}",
+				"\t}",
+
+				"\treturn true;",
+			"}",
+        ],
+        "description": "bellmanFord"
+    },
 	"floydWarshall": {
     	"prefix": "floydWarshall",
     	"body": [
@@ -143,7 +280,7 @@
 					"\t\tfor(int i = 1; i <= n; i++)",
 					"\t\t{",
 
-						"\t\t\tif(dist[i][k] >= INF) continue;;",
+						"\t\t\tif(dist[i][k] >= INF) continue;",
 						"\t\t\tfor(int j = 1; j <= n; j++)",
 						"\t\t\t{",
 							"\t\t\t\tif(dist[k][j] < INF && dist[i][j] > dist[i][k] + dist[k][j])",
@@ -162,6 +299,6 @@
 				"\t}",
 			"}",
         ],
-        "description": "dijkstra"
+        "description": "floydWarshall"
     },
 }
