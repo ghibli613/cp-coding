@@ -206,13 +206,6 @@
 	"bellmanFord": {
     	"prefix": "bellmanFord",
     	"body": [
-			"\nstruct Edge",
-			"{",
-				"\tint u, v, w;",
-				"\tEdge(int u = 0, int v = 0, int w = 0)",
-					"\t\t: u(u), v(v), w(w) {}",
-			"};",
-
 			"\nint bellmanFord(vector<Edge> &edges, int n, int m, int s)",
 			"{",
 				"\tdist.assign(n + 1, INF);",
@@ -300,5 +293,45 @@
 			"}",
         ],
         "description": "floydWarshall"
+    },
+	"Edge": {
+    	"prefix": "Edge",
+    	"body": [
+			"\nstruct Edge",
+			"{",
+				"\tint u, v, w;",
+				"\tEdge(int u = 0, int v = 0, int w = 0)",
+					"\t\t: u(u), v(v), w(w) {}",
+			"};",
+        ],
+        "description": "Edge"
+    },
+	"DisjointSet": {
+    	"prefix": "DisjointSet",
+    	"body": [
+			"\nstruct DisjointSet",
+			"{",
+				"\tvector<int> parent, rank;",
+				"\tuniverse(int n): parent(n + 1), rank(n + 1, 0)",
+				"\t{",
+					"\t\tfor (int i=1; i<=n; i++) parent[i] = i;",
+				"\t}",
+				"\tint find(int u)",
+				"\t{",
+					"\t\tif (parent[u] != u) parent[u] = find(parent[u]);",
+					"\t\treturn parent[u];",
+				"\t}",
+				"\tbool join(int u, int v)",
+				"\t{",
+					"\t\tu = find(u), v = find(v);",
+					"\t\tif(u == v) return false;",
+					"\t\tif(rank[u] == rank[v]) rank[u]++;",
+					"\t\tif(rank[u] > rank[v]) parent[v] = u;",
+					"\t\telse parent[u] = v;",
+					"\t\treturn true;",
+				"\t}",
+			"};",
+        ],
+        "description": "DisjointSet"
     },
 }
