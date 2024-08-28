@@ -22,6 +22,7 @@
 			"using namespace std;\n",
 			"typedef long long ll;",
 			"typedef pair<int, int> pii;\n",
+			"const int MOD = 1000000007;\n",
 			"void solve()",
 			"{",
 			"\t$0",
@@ -306,6 +307,30 @@
         ],
         "description": "Edge"
     },
+	"graph": {
+    	"prefix": "graph",
+    	"body": [
+			"\nstruct Graph",
+			"{",
+				"\tvector<vector<pii>> adj;",
+				"\tvector<int> dist, path;",
+				"\tvector<bool> visited;",
+				"\tvector<Edge> edges;",
+				"\tvector<vector<int>> matrix, dist_matrix, path_matrix;",
+
+				"\n\tGraph(int n = 0, int m = 0):",
+					"\t\tadj(n + 1, vector<pii>()),",
+					"\t\tdist(n + 1, MOD),",
+					"\t\tpath(n + 1, -1),",
+					"\t\tvisited(n + 1, false),",
+					"\t\tedges(m),",
+					"\t\tmatrix(n + 1, vector<int>(n + 1)),",
+					"\t\tdist_matrix(n + 1, vector<int>(n + 1)),",
+					"\t\tpath_matrix(n + 1, vector<int>(n + 1)) {}",
+			"};",
+        ],
+        "description": "graph"
+    },
 	"DisjointSet": {
     	"prefix": "DisjointSet",
     	"body": [
@@ -323,7 +348,7 @@
 				"\t}",
 				"\tbool unionSet(int u, int v)",
 				"\t{",
-					"\t\tint pu = findSet(u), int pv = findSet(v);",
+					"\t\tint pu = findSet(u), pv = findSet(v);",
 					"\t\tif(pu == pv) return false;",
 					"\t\tif(Rank[pu] > Rank[pv]) parent[pv] = pu;",
 					"\t\telse if(Rank[pu] < Rank[pv]) parent[pu] = pv;",
