@@ -359,7 +359,7 @@
 					"\t\t}",
 					"\t\treturn true;",
 				"\t}",
-			"};",
+			"};\n",
         ],
         "description": "DisjointSet"
     },
