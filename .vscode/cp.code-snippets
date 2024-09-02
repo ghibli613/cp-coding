@@ -295,6 +295,47 @@
         ],
         "description": "floydWarshall"
     },
+	"prim": {
+    	"prefix": "prim",
+    	"body": [
+			"\nbool prim()",
+			"{",
+				"\tdist.assign(n, INF);",
+				"\tpath.assign(n, -1);",
+				"\tvisited.assign(n, false);\n",
+
+				"\tpriority_queue<pii, vector<pii>, greater<pii>> pq;",
+				"\tpq.push({0, 0});",
+				"\tdist[0] = 0;\n",
+
+				"\tint count = 0;",
+
+				"\twhile(!pq.empty())",
+				"\t{",
+					"\t\tpii tmp = pq.top(); pq.pop();",
+
+					"\t\tint u = tmp.second;",
+					"\t\tif(visited[u]) continue;",
+					"\t\tvisited[u] = true;",
+					"\t\tcount++;",
+
+					"\t\tfor(int i = 0; i < (int)adj[u].size(); i++)",
+					"\t\t{",
+						"\t\t\tint v = adj[u][i].first;",
+						"\t\t\tint w = adj[u][i].second;",
+						"\t\t\tif(!visited[v] && dist[v] > w)",
+						"\t\t\t{",
+							"\t\t\t\tdist[v] = w;",
+							"\t\t\t\tpath[v] = u;",
+							"\t\t\t\tpq.push({w, v});",
+						"\t\t\t}",
+					"\t\t}",
+				"\t}",
+				"\treturn count == n;",
+			"}",
+        ],
+        "description": "dijkstra"
+    },
 	"Edge": {
     	"prefix": "Edge",
     	"body": [
@@ -327,7 +368,7 @@
 					"\t\tmatrix(n + 1, vector<int>(n + 1)),",
 					"\t\tdist_matrix(n + 1, vector<int>(n + 1)),",
 					"\t\tpath_matrix(n + 1, vector<int>(n + 1)) {}",
-			"};",
+			"};\n",
         ],
         "description": "graph"
     },
