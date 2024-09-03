@@ -295,6 +295,53 @@
         ],
         "description": "floydWarshall"
     },
+	"dfs_topo": {
+    	"prefix": "dfs_topo",
+    	"body": [
+			"\nvoid dfs_topo(int u)",
+			"{",
+				"\tvisited[u] = true;",
+				"\tfor(int i = 0; i < (int)graph[u].size(); i++)",
+				"\t{",
+
+					"\t\tif(!visited[graph[u][i]])",
+						"\t\t\tdfs_topo(graph[u][i]);",
+				"\t}",
+				"\tresult.push_back(u);",
+			"}",
+        ],
+        "description": "dfs_topo"
+    },
+	"kahn": {
+    	"prefix": "kahn",
+    	"body": [
+			"\nbool kahn()",
+			"{",
+				"\tqueue<int> q;",
+				"\tfor(int i = 1; i <= n; i++)",
+					"\t\tif(indegree[i] == 0)",
+						"\t\t\tq.push(i);",
+				
+				"\twhile(!q.empty())",
+				"\t{",
+					"\t\tint u = q.front(); q.pop();",
+
+					"\t\tresult.push_back(u);",
+
+					"\t\tfor(int i = 0; i < (int)graph[u].size(); i++)",
+					"\t\t{",
+						"\t\t\tindegree[graph[u][i]]--;",
+						"\t\t\tif(indegree[graph[u][i]] == 0)",
+						"\t\t\t{",
+							"\t\t\t\tq.push(graph[u][i]);",
+						"\t\t\t}",
+					"\t\t}",
+				"\t}",
+				"\treturn result.size() == n;",
+			"}",
+        ],
+        "description": "kahn"
+    },
 	"prim": {
     	"prefix": "prim",
     	"body": [
@@ -334,7 +381,7 @@
 				"\treturn count == n;",
 			"}",
         ],
-        "description": "dijkstra"
+        "description": "prim"
     },
 	"Edge": {
     	"prefix": "Edge",
@@ -354,20 +401,23 @@
 			"\nstruct Graph",
 			"{",
 				"\tvector<vector<pii>> adj;",
-				"\tvector<int> dist, path;",
+				"\tvector<vector<int>> graph;",
+				"\tvector<int> dist, path, result;",
 				"\tvector<bool> visited;",
 				"\tvector<Edge> edges;",
 				"\tvector<vector<int>> matrix, dist_matrix, path_matrix;",
 
 				"\n\tGraph(int n = 0, int m = 0):",
 					"\t\tadj(n + 1, vector<pii>()),",
+					"\t\tgraph(n + 1, vector<int>()),",
 					"\t\tdist(n + 1, MOD),",
 					"\t\tpath(n + 1, -1),",
 					"\t\tvisited(n + 1, false),",
 					"\t\tedges(m),",
 					"\t\tmatrix(n + 1, vector<int>(n + 1)),",
 					"\t\tdist_matrix(n + 1, vector<int>(n + 1)),",
-					"\t\tpath_matrix(n + 1, vector<int>(n + 1)) {}",
+					"\t\tpath_matrix(n + 1, vector<int>(n + 1))",
+					"\t\t{}",
 			"};\n",
         ],
         "description": "graph"
