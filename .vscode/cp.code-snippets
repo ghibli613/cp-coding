@@ -298,16 +298,25 @@
 	"dfs_topo": {
     	"prefix": "dfs_topo",
     	"body": [
-			"\nvoid dfs_topo(int u)",
+			"\nbool dfs_topo(int u)",
 			"{",
-				"\tvisited[u] = true;",
+				"\tvisited[u] = 1;",
 				"\tfor(int i = 0; i < (int)graph[u].size(); i++)",
 				"\t{",
 
-					"\t\tif(!visited[graph[u][i]])",
-						"\t\t\tdfs_topo(graph[u][i]);",
+					"\t\tif(visited[graph[u][i]] == 1)",
+					"\t\t{",
+						"\t\t\treturn false;",
+					"\t\t}",
+					"\t\tif(visited[graph[u][i]] == 0)",
+					"\t\t{",
+						"\t\t\tif(dfs_topo(graph[u][i]) == false)",
+							"\t\t\t\treturn false;",
+					"\t\t}",
 				"\t}",
 				"\tresult.push_back(u);",
+				"\tvisited[u] = 2;",
+				"\treturn true;",
 			"}",
         ],
         "description": "dfs_topo"
@@ -382,6 +391,34 @@
 			"}",
         ],
         "description": "prim"
+    },
+	"kruskal": {
+    	"prefix": "kruskal",
+    	"body": [
+			"\nint kruskal()",
+			"{",
+				"\tint mst = 0;",
+				"\tint cnt = 0;\n",
+
+				"\tsort(edges.begin(), edges.end());",
+				"\tDisjointSet djs(n);\n",
+
+				"\tfor(int u, v, w, i = 0; i < m; i++)",
+				"\t{",
+					"\t\tu = edges[i].u;",
+					"\t\tv = edges[i].v;",
+					"\t\tw = edges[i].w;\n",
+
+					"\t\tif(djs.unionSet(u, v))",
+					"\t\t{",
+						"\t\t\tcnt++;",
+						"\t\t\tmst += w;",
+					"\t\t}",
+				"\t}",
+				"\treturn cnt == n - 1 ? mst : -1;",
+			"}",
+        ],
+        "description": "kruskal"
     },
 	"Edge": {
     	"prefix": "Edge",
