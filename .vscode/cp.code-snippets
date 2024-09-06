@@ -428,6 +428,10 @@
 				"\tint u, v, w;",
 				"\tEdge(int u = 0, int v = 0, int w = 0)",
 					"\t\t: u(u), v(v), w(w) {}",
+				"\tbool operator<(const Edge& other) const",
+    			"\t{",
+        			"\t\treturn w < other.w;",
+				"\t}",
 			"};",
         ],
         "description": "Edge"
