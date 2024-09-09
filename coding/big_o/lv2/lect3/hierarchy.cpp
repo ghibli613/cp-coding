@@ -21,25 +21,22 @@ struct Edge
 struct DisjointSet
 {
     vector<int> parent, Rank;
-    DisjointSet(int n): parent(n + 1), Rank(n + 1, 0)
+    DisjointSet(int n): parent(n + 1)
     {
         for (int i=1; i<=n; i++) parent[i] = i;
     }
     int findSet(int u)
     {
-        if (parent[u] != u) parent[u] = findSet(parent[u]);
-        return parent[u];
+        if (parent[u] == u) return u;
+        return findSet(parent[u]);
     }
     bool unionSet(int u, int v)
     {
         int pu = findSet(u), pv = findSet(v);
         if(pu == pv) return false;
-        if(Rank[pu] > Rank[pv]) parent[pv] = pu;
-        else if(Rank[pu] < Rank[pv]) parent[pu] = pv;
         else
         {
             parent[pv] = pu;
-            Rank[pu]++;
         }
         return true;
     }
@@ -72,8 +69,10 @@ struct Graph
             u = edges[i].u;
             v = edges[i].v;
             w = edges[i].w;
-    
-            if(djs.unionSet(u, v))
+            
+            int pv = djs.findSet(v);
+            
+            if(pv == v && djs.unionSet(u, v))
             {
                 cnt++;
                 mst += w;

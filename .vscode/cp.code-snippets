@@ -26,19 +26,22 @@
 			"void solve()",
 			"{",
 			"\t$0",
-			"}",
-			"",
+			"}\n",
+			
 			"int main()",
 			"{",
 				"\tios::sync_with_stdio(false);",
-				"\tcin.tie(NULL);",
-				"",
+				"\tcin.tie(NULL);\n",
+				
 				"\tint t = 1;",
-				"\tcin >> t;",
-				"",
-				"\twhile(t--)",
-				"\t\tsolve();",
-				"",
+				"\tcin >> t;\n",
+
+				"\tfor(int tc = 1; tc <= t; tc++)",
+				"\t{",
+					"\t\t// cout << \"Case #\" << tc << \": \";",
+					"\t\tsolve();",
+				"\t}\n",
+
 				"\treturn 0;",
           	"}"
         ],
