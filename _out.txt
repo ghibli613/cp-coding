@@ -1,12 +1,3 @@
-Case #1: 
-YES
-NO
-YES
-Case #2: 
-YES
-NO
-Case #3: 
-NO
-YES
-Case #4: 
-YES
+binary
+decimal
+neither
