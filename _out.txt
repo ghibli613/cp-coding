@@ -1,3 +1,1 @@
-binary
-decimal
-neither
+2
