@@ -604,7 +604,7 @@
 	"findEulerCycle": {
     	"prefix": "findEulerCycle",
     	"body": [
-			"\nvoid findEulerCycle(int u)",
+			"\nvoid findEulerCycle()",
 			"{",
 				"\tint u = -1, v = -1;",
 				"\tbool isConnected = true, bad = false;\n",
