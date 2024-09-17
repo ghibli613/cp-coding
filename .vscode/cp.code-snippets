@@ -639,7 +639,7 @@
 					"\t\tg[u][v]++; g[v][u]++;",
 					"\t\tm++;",
 				"\t}",
-				"\tfindEulerPath(0)",
+				"\tfindEulerPath(0);",
 				"\tif((int)result.size() != m + 1)",
 				"\t{",
 					"\t\tcout << \"Graph does not have Euler Path\";",
