@@ -6,9 +6,20 @@ typedef pair<int, int> pii;
 
 const int MOD = 1000000007;
 
+int in[26], out[26], par[26];
+
 void solve()
 {
-    
+    int n; cin >> n;
+    for(int i=0; i<26; i++)
+    {
+        in[i] = out[i] = 0;
+        par[i] = i;
+    }
+    for(int i = 0; i < n; i++)
+    {
+        string s; cin >> s;
+    }
 }
 
 int main()
