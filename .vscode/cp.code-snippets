@@ -687,18 +687,18 @@
         ],
         "description": "Edge"
     },
-	"graph": {
-    	"prefix": "graph",
+	"Graph": {
+    	"prefix": "Graph",
     	"body": [
 			"\nstruct Graph",
 			"{\n",
 
-				"\n\tGraph(int n = 0, int m = 0):",
+				"\n\tGraph()",
 				"\t{}\n",
 
 			"};\n",
         ],
-        "description": "graph"
+        "description": "Graph"
     },
 	"DisjointSet": {
     	"prefix": "DisjointSet",
