@@ -520,7 +520,7 @@
     	"body": [
 			"\nvoid findHamiltonPath(int u)",
 			"{",
-				"\tif(path.size()== n)",
+				"\tif((int)path.size()== n)",
 				"\t{",
 					"\t\tbool hasCycle = false;",
 					"\t\tfor(int v : graph[u])",
@@ -544,7 +544,7 @@
 						"\t\t\tpath.push_back(v);",
 						"\t\t\tfindHamiltonPath(v);",
 						"\t\t\tpath.pop_back();",
-						"\t\t\tvisited[v] = false",
+						"\t\t\tvisited[v] = false;",
 					"\t\t}",
 				"\t}",
 			"}\n",
