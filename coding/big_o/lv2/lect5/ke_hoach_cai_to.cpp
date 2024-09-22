@@ -69,7 +69,7 @@ struct Graph
         }
         if(cntCmp == 1)
         {
-            cout << sum + 1ll * (m - bridge) * (n * (n - 1) / 2 - m);
+            cout << sum + 1ll * (m - bridge) * (1ll * n * (n - 1) / 2 - m);
         }
         else if(cntCmp == 2)
             cout << 1ll * (m - bridge) * sz[1] * (n - sz[1]);
