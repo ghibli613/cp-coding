@@ -21,7 +21,7 @@ void solve()
     {
         int maxone = -1;
         for (int k = 0; k < N; k++)
-            if (twostar[k] <= stars && twostar[k] != -1 && (maxone == -1 || onestar[maxone] < onestar[k]))
+            if (twostar[k] <= stars && twostar[k] != -1)
                 maxone = k;
 
         if (maxone != -1)
@@ -41,12 +41,8 @@ void solve()
 
         int maxtwo = -1;
         for (int k = 0; k < N; k++)
-            if (onestar[k] <= stars && onestar[k] != -1 && (maxtwo == -1 || twostar[maxtwo] < twostar[k] || twostar[k] == -1))
-            {
+            if (onestar[k] <= stars && onestar[k] != -1 && (maxtwo == -1 || twostar[maxtwo] < twostar[k]))
                 maxtwo = k;
-                if (twostar[k] == -1)
-                    break;
-            }
 
         if (maxtwo != -1)
         {
