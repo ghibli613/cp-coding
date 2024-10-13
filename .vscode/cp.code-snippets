@@ -732,4 +732,53 @@
         ],
         "description": "DisjointSet"
     },
+	"fastMult": {
+    	"prefix": "fastMult",
+    	"body": [
+			"\nint fastMult(int a, int b)",
+			"{",
+    			"\tint res = 0;",
+    			"\ta %= MOD;",
+    			"\tb %= MOD;",
+    			"\twhile(b > 0)",
+    			"\t{",
+        			"\t\tif(b & 1) res = (res + a) % MOD;",
+        			"\t\ta = (a + a) % MOD;",
+        			"\t\tb >>= 1;",
+    			"\t}",
+    			"\treturn res;",
+			"}",
+        ],
+        "description": "fastMult"
+    },
+	"fastPow": {
+    	"prefix": "fastPow",
+    	"body": [
+			"\nint fastPow(int a, int b)",
+			"{",
+    			"\tint res = 1;",
+    			"\ta %= MOD;",
+    			"\twhile(b > 0)",
+    			"\t{",
+        			"\t\tif(b & 1) res = (1ll * res * a) % MOD;",
+        			"\t\ta = (1ll * a * a) % MOD;",
+        			"\t\tb >>= 1;",
+    			"\t}",
+    			"\treturn res;",
+			"}",
+        ],
+        "description": "fastPow"
+    },
+	"modInverse": {
+    	"prefix": "modInverse",
+    	"body": [
+			"\nint modInverse(int b)",
+			"{",
+				"\tint res = fastPow(b, MOD - 2);",
+				"\tif((1ll * res * b) % MOD == 1) return res;",
+				"\treturn -1;",
+			"}",
+        ],
+        "description": "modInverse"
+    },
 }
