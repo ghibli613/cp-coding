@@ -1,0 +1,8 @@
+struct Graph
+{
+
+
+    Graph()
+    {}
+
+};
