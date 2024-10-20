@@ -10,7 +10,7 @@ struct mint
 		if (v < 0)
 			v += MOD;
 	}
-	friend bool operator==(const mi &a, const mi &b)
+	friend bool operator==(const mint &a, const mint &b)
 	{
 		return a.v == b.v;
 	}
@@ -63,11 +63,11 @@ struct mint
 	friend mint operator-(mint a, const mint &b) { return a -= b; }
 	friend mint operator*(mint a, const mint &b) { return a *= b; }
 	friend mint operator/(mint a, const mint &b) { return a /= b; }
-	friend ostream &operator<<(ostream &os, const mi &m)
+	friend ostream &operator<<(ostream &os, const mint &m)
 	{
 		return os << m.v;
 	}
-	friend istream &operator>>(istream &is, mi &m)
+	friend istream &operator>>(istream &is, mint &m)
 	{
 		ll x;
 		is >> x;

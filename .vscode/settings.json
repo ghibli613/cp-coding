@@ -24,6 +24,7 @@
         "iostream": "cpp",
         "ostream": "cpp",
         "complex": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "type_traits": "cpp"
     }
 }
