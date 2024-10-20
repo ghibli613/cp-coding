@@ -40,10 +40,7 @@ int main()
         {
             x /= primes[i];
             res = (res * primes[i]) % MOD;
-            // cout << res << ' ';
         }
-        // cout << '\n';
-        // cout << primes[i] << ' ';
     }
     cout << res;
 
