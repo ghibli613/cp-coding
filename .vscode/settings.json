@@ -26,6 +26,11 @@
         "complex": "cpp",
         "numeric": "cpp",
         "type_traits": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "*.tcc": "cpp",
+        "memory": "cpp",
+        "future": "cpp",
+        "utility": "cpp",
+        "iomanip": "cpp"
     }
 }
