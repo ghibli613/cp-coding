@@ -31,6 +31,7 @@
         "memory": "cpp",
         "future": "cpp",
         "utility": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "iosfwd": "cpp"
     }
 }
