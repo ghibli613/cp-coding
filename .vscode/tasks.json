@@ -1,74 +1,3 @@
-{
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "C/C++: Compile",
-            "type": "cppbuild",
-            "command": "g++",
-            "args": [
-                "-g",
-                "-Wall",
-                "-O2",
-                "-Wextra",
-                "-Wfloat-equal",
-                "-pedantic",
-                "-std=c++20",
-                "-D_GLIBCXX_DEBUG",
-                "-D_GLIBCXX_DEBUG_PEDANTIC",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared",
-            },
-        },
-        {
-            "label": "C/C++: Run",
-            "type": "shell",
-            "command": "${fileDirname}\\${fileBasenameNoExtension}",
-            "args": [
-                "0<",
-                "_in.txt",
-                "1>",
-                "_out.txt",
-                "2>&1"
-            ],
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared",
-            }
-        },
-        {
-            "label": "C/C++: Stress Test",
-            "type": "shell",
-            "command": "${workspaceFolder}\\stress.sh",
-            "args": [
-                "${fileDirname}\\${fileBasenameNoExtension}_gen",
-                "${fileDirname}\\${fileBasenameNoExtension}",
-                "${fileDirname}\\${fileBasenameNoExtension}_good"
-            ],
-            "group": {
-                "kind": "none",
-                "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared",
-            }
-        }
-    ],
-}
-
 // {
 //     "version": "2.0.0",
 //     "tasks": [
@@ -88,7 +17,7 @@
 //                 "-D_GLIBCXX_DEBUG_PEDANTIC",
 //                 "${file}",
 //                 "-o",
-//                 "${fileDirname}/${fileBasenameNoExtension}"
+//                 "${fileDirname}\\${fileBasenameNoExtension}"
 //             ],
 //             "group": {
 //                 "kind": "build",
@@ -102,7 +31,7 @@
 //         {
 //             "label": "C/C++: Run",
 //             "type": "shell",
-//             "command": "${fileDirname}/${fileBasenameNoExtension}",
+//             "command": "${fileDirname}\\${fileBasenameNoExtension}",
 //             "args": [
 //                 "0<",
 //                 "_in.txt",
@@ -122,11 +51,11 @@
 //         {
 //             "label": "C/C++: Stress Test",
 //             "type": "shell",
-//             "command": "${workspaceFolder}/stress.sh",
+//             "command": "${workspaceFolder}\\stress.sh",
 //             "args": [
-//                 "${fileDirname}/${fileBasenameNoExtension}_gen",
-//                 "${fileDirname}/${fileBasenameNoExtension}",
-//                 "${fileDirname}/${fileBasenameNoExtension}_good"
+//                 "${fileDirname}\\${fileBasenameNoExtension}_gen",
+//                 "${fileDirname}\\${fileBasenameNoExtension}",
+//                 "${fileDirname}\\${fileBasenameNoExtension}_good"
 //             ],
 //             "group": {
 //                 "kind": "none",
@@ -139,3 +68,74 @@
 //         }
 //     ],
 // }
+
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C/C++: Compile",
+            "type": "process",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-Wall",
+                "-O2",
+                "-Wextra",
+                "-Wfloat-equal",
+                "-pedantic",
+                "-std=c++20",
+                "-D_GLIBCXX_DEBUG",
+                "-D_GLIBCXX_DEBUG_PEDANTIC",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+            },
+        },
+        {
+            "label": "C/C++: Run",
+            "type": "shell",
+            "command": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [
+                "0<",
+                "_in.txt",
+                "1>",
+                "_out.txt",
+                "2>&1"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+            }
+        },
+        {
+            "label": "C/C++: Stress Test",
+            "type": "shell",
+            "command": "${workspaceFolder}/stress.sh",
+            "args": [
+                "${fileDirname}/${fileBasenameNoExtension}_gen",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "${fileDirname}/${fileBasenameNoExtension}_good"
+            ],
+            "group": {
+                "kind": "none",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+            }
+        }
+    ],
+}
