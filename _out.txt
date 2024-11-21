@@ -1,5 +1,3 @@
-SET 1:
-QUERY 1: 2
-QUERY 2: 9
-SET 2:
-QUERY 1: 1
+1. Length of longest match: 1
+2. Blank!
+3. Length of longest match: 2
