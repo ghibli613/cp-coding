@@ -1,3 +1,6 @@
-1. Length of longest match: 1
-2. Blank!
-3. Length of longest match: 2
+Max hits: 4
+1
+2
+3
+5
+

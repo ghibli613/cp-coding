@@ -32,6 +32,8 @@
         "future": "cpp",
         "utility": "cpp",
         "iomanip": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "generator": "cpp",
+        "text_encoding": "cpp"
     }
 }
