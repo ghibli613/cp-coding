@@ -28,10 +28,9 @@ int LIS(vector<int>& A, vector<int>& dp, vector<int> & prev)
     return lis_index[(int)lis.size() - 1];
 }
 
-void trace(vector<int>& A, vector<int>>& prev, int pos)
+void trace(vector<int>& A, vector<int>& prev, int pos)
 {
     vector<int> b;
-    int pos = lis_index[(int)lis.size() - 1];
     while(pos != -1)
     {
         b.push_back(A[pos]);
