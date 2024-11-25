@@ -34,6 +34,7 @@
         "iomanip": "cpp",
         "iosfwd": "cpp",
         "generator": "cpp",
-        "text_encoding": "cpp"
+        "text_encoding": "cpp",
+        "system_error": "cpp"
     }
 }
