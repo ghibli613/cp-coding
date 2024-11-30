@@ -9,9 +9,9 @@ int knapsack(int N, int W)
         for (int j = 0; j <= W; j++)
         {
             dp[i][j] = dp[i - 1][j];
-            if (j >= weight[i - 1] && dp[i][j] < dp[i - 1][j - weight[i - 1]] + weight[i - 1])
+            if (j >= weight[i - 1] && dp[i][j] < dp[i - 1][j - weight[i - 1]] + profit[i - 1])
             {
-                dp[i][j] = dp[i - 1][j - weight[i - 1]] + weight[i - 1];
+                dp[i][j] = dp[i - 1][j - weight[i - 1]] + profit[i - 1];
             }
         }
 
