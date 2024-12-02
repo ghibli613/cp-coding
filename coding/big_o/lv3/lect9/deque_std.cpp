@@ -3,40 +3,38 @@ using namespace std;
 
 typedef long long ll;
 
+vector<int> maxKSubarray(const vector<int> &a, int n, int k)
+{
+    vector<int> res;
+    deque<int> dp;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (!dp.empty() && dp.front() <= i - k)
+            dp.pop_front();
+        while (!dp.empty() && a[dp.back()] <= a[i])
+            dp.pop_back();
+
+        dp.push_back(i);
+        if (i >= k - 1)
+            res.push_back(a[dp.front()]);
+    }
+    return res;
+}
+
 void solve()
 {
     int n, k;
     cin >> n >> k;
 
-    vector<int> arr(n);
+    vector<int> a(n);
     for (int i = 0; i < n; i++)
-        cin >> arr[i];
+        cin >> a[i];
 
-    deque<int> dq;
-    int i;
-    for (i = 0; i < k; i++)
-    {
-        while (!dq.empty() && arr[i] >= arr[dq.back()])
-        {
-            dq.pop_back();
-        }
-        dq.push_back(i);
-    }
-    for (; i < n; i++)
-    {
-        cout << arr[dq.front()] << " ";
-
-        if (!dq.empty() && dq.front() <= i - k)
-        {
-            dq.pop_front();
-        }
-        while (!dq.empty() && arr[i] >= arr[dq.back()])
-        {
-            dq.pop_back();
-        }
-        dq.push_back(i);
-    }
-    cout << arr[dq.front()] << endl;
+    vector<int> res = maxKSubarray(a, n, k);
+    for(int x : res)
+        cout << x << ' ';
+    cout << '\n';
 }
 
 int main()
