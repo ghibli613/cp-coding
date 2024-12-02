@@ -6,18 +6,18 @@ typedef long long ll;
 vector<int> maxKSubarray(const vector<int> &a, int n, int k)
 {
     vector<int> res;
-    deque<int> dp;
+    deque<int> dq;
 
     for (int i = 0; i < n; i++)
     {
-        if (!dp.empty() && dp.front() <= i - k)
-            dp.pop_front();
-        while (!dp.empty() && a[dp.back()] <= a[i])
-            dp.pop_back();
+        if (!dq.empty() && dq.front() <= i - k)
+            dq.pop_front();
+        while (!dq.empty() && a[dq.back()] <= a[i])
+            dq.pop_back();
 
-        dp.push_back(i);
+        dq.push_back(i);
         if (i >= k - 1)
-            res.push_back(a[dp.front()]);
+            res.push_back(a[dq.front()]);
     }
     return res;
 }
