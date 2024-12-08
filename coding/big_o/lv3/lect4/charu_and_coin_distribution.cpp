@@ -37,3 +37,27 @@ int main()
 
     return 0;
 }
+
+// M = 1e9 + 7;
+// x = N % M; \\ N is the money
+// y = (x * x) % M;
+// ans = (((x + 6) *y) % M + (11 * x + 6) % M) % M;
+// ans = (ans * 166666668) % M;
+
+// dp[n,k] = number of ways of dividing 2^k*n into coins of types [1,2,4,8,16,...,2^k].
+// dp[n,0] = 1
+// dp[n,k] = sum from i=0 to n of dp[i*2,k-1] (where this i is n-(number of coins of type 2^k you take))
+
+// dp[n, 1] = n + 1
+// 	dp[0, 1] => 0 to [1, 2] is 1
+// 	dp[1, 1] => 2 to [1, 2] is 2
+// 	dp[2, 1] => 4 to [1, 2] is 3
+
+
+// dp[n, 2] = sum from i=0 to n of (2i+1) = (2n+2)*(n+1)/2 = (n+1)^2
+// 	dp[0, 2] => 0 to [1, 2, 4] is 1
+// 	dp[1, 2] => 4 to [1, 2, 4] is 4
+// 	dp[2, 2] => 8 to [1, 2, 4] is 9
+
+
+// dp[n, 3] = sum from i=0 to n of (2i+1)^2 = 4/3*n^3+4*n^2+11/3*n+1
