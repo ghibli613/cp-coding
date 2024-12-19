@@ -35,6 +35,8 @@
         "iosfwd": "cpp",
         "generator": "cpp",
         "text_encoding": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp"
     }
 }
