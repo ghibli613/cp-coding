@@ -1,17 +1,19 @@
-template<class T>
+template <class T>
 struct LazySegTree
 {
     vector<T> seg_tree, lazy;
     int n;
 
-    void init(int _n)
+    void init(const vector<T> &a)
     {
-        n = _n;
+        n = (int)a.size();
         seg_tree.assign(4 * n, 0);
         lazy.assign(4 * n, 0);
+
+        buildTree(a, 0, 0, n - 1);
     }
 
-    void buildTree(const vector<T>& a, int id, int l, int r)
+    void buildTree(const vector<T> &a, int id, int l, int r)
     {
         if (l == r)
         {
@@ -35,8 +37,7 @@ struct LazySegTree
         lazy[id] = 0;
     }
 
-    void lazyUpdate(int id, int l, int r,
-                    int fr, int to, T val)
+    void lazyUpdate(int id, int l, int r, int fr, int to, T val)
     {
         if (lazy[id] != 0)
             down(id, l, r);
@@ -58,13 +59,12 @@ struct LazySegTree
         seg_tree[id] = min(seg_tree[2 * id + 1], seg_tree[2 * id + 2]);
     }
 
-    T lazyMinQuery(int id, int l, int r,
-                     int fr, int to)
+    T lazyMinQuery(int id, int l, int r, int fr, int to)
     {
         if (lazy[id] != 0)
             down(id, l, r);
         if (fr > r || to < l)
-            return INF;
+            return INT_MAX;
         if (fr <= l && r <= to)
             return seg_tree[id];
 

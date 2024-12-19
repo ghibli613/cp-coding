@@ -1,16 +1,18 @@
-template<class T>
+template <class T>
 struct SegTree
 {
     vector<T> seg_tree;
     int n;
 
-    void init(int _n)
+    void init(const vector<T> &a)
     {
-        n = _n;
+        n = (int)a.size();
         seg_tree.assign(4 * n, 0);
+
+        buildTree(a, 0, 0, n - 1);
     }
 
-    void buildTree(const vector<T>& a, int id, int l, int r)
+    void buildTree(const vector<T> &a, int id, int l, int r)
     {
         if (l == r)
         {
