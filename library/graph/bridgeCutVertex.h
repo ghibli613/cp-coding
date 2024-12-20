@@ -1,4 +1,4 @@
-void bridgeCutVertex_recursive(int u, int p)
+void bridgeCutVertex(int u, int p)
 {
     counter++;
     num[u] = low[u] = counter;
@@ -11,7 +11,7 @@ void bridgeCutVertex_recursive(int u, int p)
             low[u] = min(low[u], num[v]);
         else
         {
-            bridgeCutVertex_recursive(v, u);
+            bridgeCutVertex(v, u);
             low[u] = min(low[u], low[v]);
             numChild++;
             if(low[v] > num[u])
