@@ -1,13 +1,13 @@
 template <class T>
 struct SegTree
 {
-    vector<T> seg_tree;
+    vector<T> seg;
     int n;
 
     void init(const vector<T> &a)
     {
         n = (int)a.size();
-        seg_tree.assign(4 * n, 0);
+        seg.assign(4 * n, 0);
 
         buildTree(a, 0, 0, n - 1);
     }
@@ -16,19 +16,19 @@ struct SegTree
     {
         if (l == r)
         {
-            seg_tree[id] = a[l];
+            seg[id] = a[l];
             return;
         }
         int m = (l + r) / 2;
         buildTree(a, 2 * id + 1, l, m);
         buildTree(a, 2 * id + 2, m + 1, r);
-        seg_tree[id] = min(seg_tree[2 * id + 1], seg_tree[2 * id + 2]);
+        seg[id] = min(seg[2 * id + 1], seg[2 * id + 2]);
     }
 
     T queryMin(int id, int l, int r, int fr, int to)
     {
         if (fr <= l && r <= to)
-            return seg_tree[id];
+            return seg[id];
         if (fr > r || to < l)
             return INT_MAX;
 
@@ -43,7 +43,7 @@ struct SegTree
     {
         if (l == r)
         {
-            seg_tree[id] = val;
+            seg[id] = val;
             return;
         }
 
@@ -52,6 +52,6 @@ struct SegTree
             updateMin(2 * id + 1, l, m, pos, val);
         else
             updateMin(2 * id + 2, m + 1, r, pos, val);
-        seg_tree[id] = min(seg_tree[2 * id + 1], seg_tree[2 * id + 2]);
+        seg[id] = min(seg[2 * id + 1], seg[2 * id + 2]);
     }
 };
