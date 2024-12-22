@@ -4,12 +4,15 @@ struct LazySegTree
     vector<T> seg, lazy;
     int n;
 
-    void init(const vector<T> &a)
+    LazySegTree(int n_)
     {
-        n = (int)a.size();
+        n = n_;
         seg.assign(4 * n, 0);
         lazy.assign(4 * n, 0);
+    }
 
+    LazySegTree(const vector<T> &a) : LazySegTree((int)a.size())
+    {
         buildTree(a, 0, 0, n - 1);
     }
 

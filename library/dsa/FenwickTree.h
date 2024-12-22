@@ -3,16 +3,16 @@ struct FenwickTree
 {
     int n;
     vector<T> f;
-    vector<T> f1;
+    // vector<T> f1;
 
-    void init(int n_)
+    FenwickTree(int n_)
     {
         n = n_;
-        f.assign(n, 0);
-        // f1.assign(n, 0);
+        f.assign(n + 1, 0);
+        // f1.assign(n + 1, 0);
     }
 
-    void update(int id, int val)
+    void update(int id, T val)
     {
         while(id <= n)
         {

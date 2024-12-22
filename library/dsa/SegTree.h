@@ -4,11 +4,14 @@ struct SegTree
     vector<T> seg;
     int n;
 
-    void init(const vector<T> &a)
+    SegTree(int n_)
     {
-        n = (int)a.size();
+        n = n_;
         seg.assign(4 * n, 0);
+    }
 
+    SegTree(const vector<T> &a) : SegTree((int)a.size())
+    {
         buildTree(a, 0, 0, n - 1);
     }
 
