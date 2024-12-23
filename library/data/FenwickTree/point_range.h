@@ -1,7 +1,11 @@
-const int MAX = 1e5 + 10;
-
-int f[MAX];
 int n;
+vector<T> f;
+
+FenwickTree(int n_)
+{
+    n = n_;
+    f.assign(n + 7, 0);
+}
 
 void update(int id, int val)
 {
@@ -12,9 +16,9 @@ void update(int id, int val)
     }
 }
 
-int getSum(int id)
+T getSum(int id)
 {
-    int sum = 0;
+    T sum = 0;
     while(id > 0)
     {
         sum += f[id];
@@ -23,12 +27,12 @@ int getSum(int id)
     return sum;
 }
 
-int sumRange(int l, int r)
+T sumRange(int l, int r)
 {
     return getSum(r) - getSum(l);
 }
 
-void updateRange (int l, int r, int val)
+void updateRange (int l, int r, T val)
 {
     update(l, val);
     update(r + 1, -val);

@@ -1,9 +1,14 @@
-const int MAX = 1e5 + 10;
-
-int f1[MAX], f2[MAX];
 int n;
+vector<T> f1, f2;
 
-void update(int f[], int id, int val)
+FenwickTree(int n_)
+{
+    n = n_;
+    f1.assign(n + 7, 0);
+    f2.assign(n + 7, 0);
+}
+
+void update(vector<T> &f, int id, int val)
 {
     while(id <= n)
     {
@@ -12,9 +17,9 @@ void update(int f[], int id, int val)
     }
 }
 
-int getSum(int f[], int id)
+T getSum(vector<T> &f, int id)
 {
-    int sum = 0;
+    T sum = 0;
     while(id > 0)
     {
         sum += f[id];
@@ -23,7 +28,7 @@ int getSum(int f[], int id)
     return sum;
 }
 
-void updateRange (int l, int r, int val)
+void updateRange(int l, int r, T val)
 {
     update(f1, l, val);
     update(f1, r + 1, -val);
@@ -31,35 +36,12 @@ void updateRange (int l, int r, int val)
     update(f2, r + 1, -val * r);
 }
 
-int prefixSum(int id)
+T prefixSum(int id)
 {
     return getSum(f1, id) * id - getSum(f2, id);
 }
 
-int sumRange(int l, int r)
+T sumRange(int l, int r)
 {
     return prefixSum(r) - prefixSum(l - 1);
-}
-
-int main()
-{
-    ios::sync_with_stdio(0);
-
-    int q, t, l, r, x;
-
-    cin >> n >> q;
-    while(q--)
-    {
-        cin >> t;
-        if(t == 1)
-        {
-            cin >> l >> r >> x;
-            updateRange(l, r, x);
-        }
-        else
-        {
-            cin >> l >> r;
-            cout << sumRange(l, r) << "\n'"
-        }
-    }
 }
