@@ -1,8 +1,4 @@
 struct Graph
 {
-
-
-    Graph()
-    {}
-
+    
 };

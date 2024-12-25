@@ -16,7 +16,7 @@ void compute_spare_table(const vector<T> &a)
 T sumQuery(int l, int r)
 {
     int k, total = 0;
-    for (int k = MAX_LOG; k >= 0; k--)
+    for (int k = n_log; k >= 0; k--)
     {
         if (l + (1 << k) - 1 <= r)
         {
