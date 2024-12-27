@@ -1,3 +1,17 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <functional>
+using namespace std;
+
+const int INF = 1e9;
+
+typedef pair<int, int> pii;
+
+vector<int> dist, path;
+vector<vector<pii>> adj;
+int n, m;
+
 void dijkstra(int s)
 {
     dist.assign(n, INF);
@@ -22,4 +36,25 @@ void dijkstra(int s)
             }
         }
     }
+}
+
+int main()
+{
+    cin >> n >> m;
+    adj.assign(n, vector<pii>());
+    int u, v, w;
+    for(int i = 0; i < m; i++)
+    {
+        cin >> u >> v >> w;
+        adj[u].push_back({v, w});
+    }
+
+    dijkstra(0);
+
+    for(int i = 0; i < n; i++)
+    {
+        cout << dist[i] << " ";
+    }
+
+    return 0;
 }

@@ -1,3 +1,13 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <functional>
+using namespace std;
+
+const int INF = 1e9;
+
+vector<vector<int>> dist, path;
+
 int floydWarshall(vector<vector<int>> &matrix, int n)
 {
     dist.assign(n + 1, vector<int>(n + 1));
@@ -35,6 +45,25 @@ int floydWarshall(vector<vector<int>> &matrix, int n)
     // check negative cycle
     for(int i = 1; i <= n; i++)
     {
-        if(dist[i][j] < 0) return false;
+        if(dist[i][i] < 0) return false;
     }
+}
+
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+
+    vector<vector<int>> matrix(n + 1, vector<int>(n + 1, INF));
+    for(int u, v, w, i = 0; i < m; i++)
+    {
+        cin >> u >> v >> w;
+        matrix[u][v] = w;
+    }
+
+    floydWarshall(matrix, n);
+    for(int i = 1; i <= n; i++)
+        cout << dist[1][i] << " ";
+
+    return 0;
 }

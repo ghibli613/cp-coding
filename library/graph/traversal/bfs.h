@@ -1,3 +1,12 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+vector<vector<int>> adj;
+vector<int> path;
+vector<bool> visited;
+
 void bfs(int s)
 {
     int sz = adj.size();
@@ -24,4 +33,20 @@ void bfs(int s)
             }
         }
     }
+}
+
+int main()
+{
+    int n, m; cin >> n >> m;
+
+    adj.assign(n + 1, vector<int>());
+    for(int u, v, i = 0; i < m; i++)
+    {
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    bfs(1);
+
+    return 0;
 }

@@ -37,6 +37,7 @@
         "text_encoding": "cpp",
         "system_error": "cpp",
         "chrono": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "queue": "cpp"
     }
 }
