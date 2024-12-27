@@ -1,3 +1,6 @@
+vector<bool> isPrime;
+vector<int> primes;
+
 void sieveOfEratosthenes(int n)
 {
     isPrime.assign(n + 1, true);

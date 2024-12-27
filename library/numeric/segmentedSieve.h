@@ -1,3 +1,6 @@
+vector<bool> isPrime;
+vector<int> primes;
+
 void segmentedSieve(int l, int r, const vector<int>& basePrimes)
 {
     isPrime.assign(r - l + 1, true);
