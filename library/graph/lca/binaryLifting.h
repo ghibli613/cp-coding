@@ -4,23 +4,6 @@ int counter;
 vector<int> tin, tout;
 vector<vector<int>> parent;
 
-Graph(int n_)
-{
-    n = n_;
-    graph.assign(n + 1, vector<int>());
-    tin.assign(n + 1, 0); tout.assign(n + 1, 0);
-    
-    level = ceil(log2(n));
-    parent.assign(n + 1, vector<int>(level));
-    for(int i = 1; i < n; i++)
-    {
-        int u, v;
-        cin >> u >> v;
-        graph[u].push_back(v);
-        graph[v].push_back(u);
-    }
-}
-
 void dfs(int u, int p)
 {
     tin[u] = ++counter;
@@ -58,4 +41,29 @@ int lca(int u, int v)
             u = parent[u][k];
     
     return parent[u][0];
+}
+
+void test()
+{
+    int q, u, v;
+    cin >> n;
+    graph.assign(n + 1, vector<int>());
+    tin.assign(n + 1, 0); tout.assign(n + 1, 0);
+
+    level = ceil(log2(n));
+    parent.assign(n + 1, vector<int>(level));
+
+    for(int i = 1; i < n; i++)
+    {
+        cin >> u >> v;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+    preprocess();
+    cin >> q;
+    while(q--)
+    {
+        cin >> u >> v;
+        cout << lca(u, v) << "\n";
+    }
 }

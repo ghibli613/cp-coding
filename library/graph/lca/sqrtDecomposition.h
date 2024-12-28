@@ -3,21 +3,6 @@ vector<vector<int>> graph;
 int block_size;
 vector<int> level, parent, jump_parent;
 
-Graph(int n_)
-{
-    n = n_;
-    graph.assign(n + 1, vector<int>());
-    level.assign(n + 1);
-    parent.assign(n + 1);
-    jump_parent.assign(n + 1);
-    for(int i = 1; i <= n; i++)
-    {
-        cin >> u >> v;
-        graph[u].push_back(v);
-        graph[v].push_back(u);
-    }
-}
-
 int getDepth(int u, int p)
 {
     int res = 0;
@@ -76,4 +61,28 @@ int lca(int u, int v)
     }
     
     return u;
+}
+
+void test()
+{
+    int q, u, v;
+    cin >> n;
+    graph.assign(n + 1, vector<int>());
+    level.assign(n + 1);
+    parent.assign(n + 1);
+    jump_parent.assign(n + 1);
+    
+    for(int i = 1; i < n; i++)
+    {
+        cin >> u >> v;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+    preprocess();
+    cin >> q;
+    while(q--)
+    {
+        cin >> u >> v;
+        cout << lca(u, v) << "\n";
+    }
 }

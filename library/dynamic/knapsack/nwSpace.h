@@ -1,3 +1,6 @@
+vector<int> weight, profit;
+vector<vector<int>> dp;
+
 int knapsack(int N, int W)
 {
     dp.assign(N + 1, vector<int>(W + 1, 0));
@@ -23,7 +26,7 @@ void trace(int N, int W)
     int totalWeight = 0, totalProfit = 0;
     while (N > 0 && W > 0)
     {
-        if (weight[N - 1] <= W && dp[W] == dp[W - weight[N - 1]] + profit[N - 1])
+        if (weight[N - 1] <= W && dp[N][W] == dp[N - 1][W - weight[N - 1]] + profit[N - 1])
         {
             cout << weight[N - 1] << " - " << profit[N - 1] << "\n";
             totalWeight += weight[N - 1];
@@ -36,16 +39,14 @@ void trace(int N, int W)
     cout << "Total profit: " << totalProfit << "\n";
 }
 
-// int knapsack(int N, int W)
-// {
-//     dp.assign(W + 1, 0);
+void test()
+{
+    int n, w; cin >> n >> w;
+    weight.resize(n);
+    profit.resize(n);
+    for(int i = 0; i < n; i++)
+        cin >> weight[i] >> profit[i];
 
-//     for(int i = 0; i < N; i++)
-//         for(int j = W; j >= weight[i]; j--)
-//         {
-//             if(dp[j] < dp[j - weight[i]] + profit[i])
-//                 dp[j] = dp[j - weight[i]] + profit[i];
-//         }
-
-//     return dp[W];
-// }
+    knapsack(n, w);
+    trace(n, w);
+}
