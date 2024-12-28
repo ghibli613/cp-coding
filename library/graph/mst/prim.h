@@ -1,9 +1,3 @@
-#include <iostream>
-#include <queue>
-#include <vector>
-#include <functional>
-using namespace std;
-
 const int INF = 1e9;
 
 typedef pair<int, int> pii;
@@ -46,7 +40,7 @@ bool prim()
     return count == n;
 }
 
-int main()
+void test()
 {
     cin >> n >> m;
 
@@ -66,5 +60,4 @@ int main()
             mst += dist[i];
         cout << "MST: " << mst << "\n";
     }
-    return 0;
 }

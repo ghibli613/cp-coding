@@ -1,10 +1,4 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
-const int MAX = 110;
-
-int deg[MAX][MAX];
+vector<vector<int>> deg;
 int n, m;
 vector<int> result;
 
@@ -22,9 +16,10 @@ void findEulerPath(int u)
     result.push_back(u);
 }
 
-int main()
+void test()
 {
     cin >> n >> m;
+    deg.assign(n + 1, vector<int>(n + 1, 0));
 
     for(int u, v, i = 0; i < m; i++)
     {
@@ -38,5 +33,4 @@ int main()
     {
         cout << v << " ";
     }
-    return 0;
 }

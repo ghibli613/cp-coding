@@ -1,50 +1,35 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-
 typedef pair<int, int> pii;
 typedef pair<int, pii> piii;
 
-const int MAX = 1e5;
-
-int parent[MAX];
-int Rank[MAX];
 vector<piii> edges;
 int n, m;
 
-void makeSet(int n)
+struct DisjointSet
 {
-    for (int i = 1; i <= n; i++)
+    vector<int> parent, Rank;
+    DisjointSet(int n): parent(n + 1), Rank(n + 1, 0)
     {
-        parent[i] = i;
-        Rank[i] = 1;
+        for (int i=1; i<=n; i++) parent[i] = i;
     }
-}
-
-int findSet(int u)
-{
-    if (parent[u] != u)
-        parent[u] = findSet(parent[u]);
-    return parent[u];
-}
-
-bool unionSet(int u, int v)
-{
-    int pu = findSet(u), pv = findSet(v);
-    if (pu == pv)
-        return false;
-    if (Rank[pu] > Rank[pv])
-        parent[pv] = pu;
-    else if (Rank[pu] < Rank[pv])
-        parent[pu] = pv;
-    else
+    int findSet(int u)
     {
-        parent[pv] = pu;
-        Rank[pu]++;
+        if (parent[u] != u) parent[u] = findSet(parent[u]);
+        return parent[u];
     }
-    return true;
-}
+    bool unionSet(int u, int v)
+    {
+        int pu = findSet(u), pv = findSet(v);
+        if(pu == pv) return false;
+        if(Rank[pu] > Rank[pv]) parent[pv] = pu;
+        else if(Rank[pu] < Rank[pv]) parent[pu] = pv;
+        else
+        {
+            parent[pv] = pu;
+            Rank[pu]++;
+        }
+        return true;
+    }
+};
 
 int kruskal()
 {
@@ -52,7 +37,7 @@ int kruskal()
     int cnt = 0;
 
     sort(edges.begin(), edges.end());
-    makeSet(n);
+    DisjointSet dsu(n);
 
     for(int u, v, w, i = 0; i < m; i++)
     {
@@ -60,7 +45,7 @@ int kruskal()
         v = edges[i].second.second;
         w = edges[i].first;
 
-        if(unionSet(u, v))
+        if(dsu.unionSet(u, v))
         {
             cnt++;
             mst += w;
@@ -69,7 +54,7 @@ int kruskal()
     return cnt == n - 1 ? mst : -1;
 }
 
-int main()
+void test()
 {
     cin >> n >> m;
     for(int u, v, w, i = 0; i < m; i++)
@@ -83,5 +68,4 @@ int main()
         cout << "Graph is not connect\n";
     else
         cout << mst << "\n";
-    return 0;
 }

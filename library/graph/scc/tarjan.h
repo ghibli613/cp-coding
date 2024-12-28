@@ -1,12 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <algorithm>
-using namespace std;
-
-const int MAX = 1e5 + 10;
-
-vector<int> graph[MAX];
+vector<vector<int>> graph;
 vector<int> low, num;
 vector<bool> found;
 stack<int> st;
@@ -65,15 +57,15 @@ void tarjan()
     }
 }
 
-int main()
+void test()
 {
     cin >> n >> m;
+    graph.assign(n + 1, vector<int>());
+
     for(int u, v, i = 0; i < m; i++)
     {
         cin >> u >> v;
         graph[u].push_back(v);
     }
     tarjan();
-
-    return 0;
 }

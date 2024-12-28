@@ -1,15 +1,6 @@
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <algorithm>
-using namespace std;
-
-const int MAX = 1e5 + 10;
-
-vector<int> graph[MAX];
-int low[MAX];
-int num[MAX];
-bool isCut[MAX];
+vector<vector<int>> graph;
+vector<int> low, num;
+vector<bool> isCut;
 vector<pair<int, int>> bridges;
 int n, m;
 int counter;
@@ -40,9 +31,13 @@ void dfs(int u, int p)
         isCut[u] = true;
 }
 
-int main()
+void test()
 {
     cin >> n >> m;
+    graph.assign(n + 1, vector<int>());
+    low.assign(n + 1, 0), num.assign(n + 1, 0);
+    isCut.assign(n + 1, false);
+    counter = 0;
 
     for(int u, v, i = 0; i < m; i++)
     {
@@ -70,5 +65,4 @@ int main()
         if(isCut[i])
             cout << " " << i;
     cout << "\n";
-    return 0;
 }

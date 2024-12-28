@@ -1,7 +1,3 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 vector<vector<int>> graph;
 int n, m;
 vector<int> path;

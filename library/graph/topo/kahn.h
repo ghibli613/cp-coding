@@ -1,11 +1,5 @@
-#include <iostream>
-#include <queue>
-#include <vector>
-using namespace std;
-
-const int MAX = 1e5 + 10;
-vector<int> graph[MAX];
-int indegree[MAX];
+vector<vector<int>> graph;
+vector<int> indegree;
 vector<int> result;
 int n, m;
 
@@ -33,9 +27,11 @@ bool kahn()
     return result.size() == n;
 }
 
-int main()
+void test()
 {
     cin >> n >> m;
+    graph.assign(n + 1, vector<int>());
+    indegree.assign(n + 1, 0);
 
     for(int u, v, i = 0; i < m; i++)
     {
@@ -50,6 +46,4 @@ int main()
         for(int i = 0; i < n; i++)
             cout << result[i] << " ";
     }
-
-    return 0;
 }

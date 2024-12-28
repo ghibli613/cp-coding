@@ -1,9 +1,3 @@
-#include <iostream>
-#include <queue>
-#include <vector>
-#include <functional>
-using namespace std;
-
 const int INF = 1e9;
 
 struct Edge
@@ -50,7 +44,7 @@ int bellmanFord(vector<Edge> &edges, int n, int m, int s)
     return true;
 }
 
-int main()
+void test()
 {
     int n, m;
     cin >> n >> m;

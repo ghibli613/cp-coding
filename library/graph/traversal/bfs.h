@@ -1,8 +1,3 @@
-#include <iostream>
-#include <queue>
-#include <vector>
-using namespace std;
-
 vector<vector<int>> adj;
 vector<int> path;
 vector<bool> visited;
@@ -35,7 +30,7 @@ void bfs(int s)
     }
 }
 
-int main()
+void test()
 {
     int n, m; cin >> n >> m;
 
@@ -47,6 +42,4 @@ int main()
         adj[v].push_back(u);
     }
     bfs(1);
-
-    return 0;
 }

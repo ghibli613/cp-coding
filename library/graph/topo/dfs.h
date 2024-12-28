@@ -1,12 +1,5 @@
-#include <iostream>
-#include <queue>
-#include <vector>
-using namespace std;
-
-const int MAX = 1e5 + 10;
-
-vector<int> graph[MAX];
-int visited[MAX];
+vector<vector<int>> graph;
+vector<int> visited;
 vector<int> result;
 int n, m;
 
@@ -34,9 +27,12 @@ bool dfs(int u)
     return true;
 }
 
-int main()
+void test()
 {
     cin >> n >> m;
+    graph.assign(n + 1, vector<int>());
+    visited.assign(n + 1, 0);
+
 
     for(int u, v, i = 0; i < m; i++)
     {
@@ -55,6 +51,4 @@ int main()
         for(int i = n - 1; i >= 0; i--)
             cout << result[i] << " ";
     }
-
-    return 0;
 }

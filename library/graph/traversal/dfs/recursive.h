@@ -1,7 +1,3 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 vector<vector<int>> adj;
 vector<int> path;
 vector<bool> visited;
@@ -22,7 +18,7 @@ void dfs(int s)
     }
 }
 
-int main()
+void test()
 {
     int n, m; cin >> n >> m;
 
@@ -37,6 +33,4 @@ int main()
     path.assign(n + 1, -1);
     visited.assign(n + 1, false);
     dfs(1);
-
-    return 0;
 }
