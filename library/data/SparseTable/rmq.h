@@ -1,30 +1,45 @@
-
-void compute_spare_table(const vector<T> &a)
+template <class T>
+struct SparseTable
 {
-    for (int i = 0; i < n; i++)
-        f[i][0] = a[i];
+    int level, n; // 2^MAX_LOG >= n
+    vector<vector<T>> f;
+    vector<T> log_2;
 
-    for (int j = 1; (1 << j) <= n; j++)
+    SparseTable(int n_)
     {
-        int step = 1 << (j - 1);
-        for (int i = 0; i + 2 * step <= n; i++)
+        n = n_;
+        level = ceil(log2(n));
+        f.assign(n, vector<T>(level + 1, 0));
+        log_2.assign(n_log + 1, 0);
+    }
+
+    void compute_spare_table(const vector<T> &a)
+    {
+        for (int i = 0; i < n; i++)
+            f[i][0] = a[i];
+
+        for (int j = 1; (1 << j) <= n; j++)
         {
-            f[i][j] = min(f[i][j - 1], f[i + step][j - 1]);
+            int step = 1 << (j - 1);
+            for (int i = 0; i + 2 * step <= n; i++)
+            {
+                f[i][j] = min(f[i][j - 1], f[i + step][j - 1]);
+            }
         }
     }
-}
 
-T minQuery(int l, int r)
-{
-    int k = log_2[r - l + 1];
-    return min(f[l][k], f[r - (1 << k) + 1][k]);
-}
-
-void compute_log()
-{
-    log_2[1] = 0;
-    for (int i = 2; i <= n; i++)
+    T minQuery(int l, int r)
     {
-        log_2[i] = log_2[i / 2] + 1;
+        int k = log_2[r - l + 1];
+        return min(f[l][k], f[r - (1 << k) + 1][k]);
     }
-}
+
+    void compute_log()
+    {
+        log_2[1] = 0;
+        for (int i = 2; i <= n; i++)
+        {
+            log_2[i] = log_2[i / 2] + 1;
+        }
+    }
+};
