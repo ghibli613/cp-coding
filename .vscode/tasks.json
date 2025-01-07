@@ -54,7 +54,7 @@
         {
             "label": "C/C++: Run",
             "type": "shell",
-            "linux":{
+            "linux": {
                 "command": "${fileDirname}/${fileBasenameNoExtension}",
             },
             "windows": {
