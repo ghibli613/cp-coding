@@ -18,8 +18,6 @@
                     "-D_GLIBCXX_DEBUG_PEDANTIC",
                     "${file}",
                     "-o",
-                    "${fileDirname}/${fileBasenameNoExtension}",
-                    "&&",
                     "${fileDirname}/${fileBasenameNoExtension}"
                 ],
             },
@@ -36,8 +34,6 @@
                     "-D_GLIBCXX_DEBUG_PEDANTIC",
                     "${file}",
                     "-o",
-                    "${fileDirname}\\${fileBasenameNoExtension}",
-                    "&&",
                     "${fileDirname}\\${fileBasenameNoExtension}"
                 ],
             },
@@ -77,23 +73,30 @@
                 "focus": true
             }
         },
-        // {
-        //     "label": "C/C++: Stress Test",
-        //     "type": "shell",
-        //     "command": "${workspaceFolder}/stress.sh",
-        //     "args": [
-        //         "${fileDirname}/${fileBasenameNoExtension}_gen",
-        //         "${fileDirname}/${fileBasenameNoExtension}",
-        //         "${fileDirname}/${fileBasenameNoExtension}_good"
-        //     ],
-        //     "group": {
-        //         "kind": "none",
-        //         "isDefault": true
-        //     },
-        //     "presentation": {
-        //         "reveal": "always",
-        //         "panel": "shared",
-        //     }
-        // }
+        {
+            "label": "C/C++: Stress Test",
+            "type": "shell",
+            "command": "python",
+            "linux": {
+                "args": [
+                    "${workspaceFolder}/stress.py",
+                    "${fileDirname}/${fileBasenameNoExtension}",
+                ],
+            },
+            "windows": {
+                "args": [
+                    "${workspaceFolder}\\stress.py",
+                    "${fileDirname}\\${fileBasenameNoExtension}",
+                ],
+            },
+            "group": {
+                "kind": "none",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+            }
+        }
     ],
 }
