@@ -58,9 +58,9 @@
             },
             "args": [
                 // "0<",
-                // "_in.txt",
+                // "in.txt",
                 // "1>",
-                // "_out.txt",
+                // "out.txt",
                 // "2>&1"
             ],
             "group": {
@@ -96,6 +96,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
+                "focus": true
             }
         }
     ],
