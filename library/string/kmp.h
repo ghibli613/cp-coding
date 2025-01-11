@@ -25,7 +25,7 @@ vector<int> kmpSearch(string t, string p, vector<int>& pref)
     for(int i = 0; i < n; i++)
     {
         while(j > 0 && t[i] != p[j])
-            j = pref[j - i];
+            j = pref[j - 1];
         if(t[i] == p[j])
             j++;
 
