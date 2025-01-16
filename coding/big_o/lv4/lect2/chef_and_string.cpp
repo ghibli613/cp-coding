@@ -1,151 +1,88 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int mod = 1e9 + 7;
-vector<vector<int>> ncr(5001, vector<int>(5001, 0));
+const int N = 5005;
+const int MOD = 1e9 + 7;
 
-// Precalculating nCr values
-void preCalculateNCR()
-{
-    for (int n = 1; n < 5001; n++)
-    {
-        for (int r = 0; r <= n; r++)
-        {
-            if (n == 0 || r == 0 || n == r)
-            {
-                ncr[n][r] = 1;
-            }
-            else
-            {
-                ncr[n][r] = (ncr[n - 1][r - 1] + ncr[n - 1][r]) % mod;
-            }
-        }
-    }
-}
+int C[N][N];
 
-vector<int> computeZFunction(const string &s)
+vector<int> zFunction(string &s)
 {
-    int size = s.size();
-    vector<int> z(size, 0);
-    int l = 0, r = 0;
-    for (int j = 1; j < size; j++)
+    vector<int> z(s.size());
+    z[0] = s.size();
+    int n = s.size();
+    for (int i = 1, l = 0, r = 0; i < n; i++)
     {
-        if (j < r)
-        {
-            z[j] = min(r - j, z[j - l]);
-        }
-        while (j + z[j] < size && s[z[j]] == s[j + z[j]])
-        {
-            z[j]++;
-        }
-        if (j + z[j] > r)
-        {
-            l = j;
-            r = j + z[j];
-        }
+        if (i <= r)
+            z[i] = min(z[i - l], r - i + 1);
+        while (i + z[i] < n && s[z[i]] == s[i + z[i]])
+            z[i]++;
+        if (i + z[i] > r)
+            r = i + z[i] - 1, l = i;
     }
     return z;
 }
 
-// Solve function
-void solve()
-{
-    int n, q;
-    cin >> n >> q;
-    string s;
-    cin >> s;
-
-    vector<int> maxZ(n, 0);
-    vector<vector<int>> count(n + 1, vector<int>(n + 1, 0));
-
-    // Process each starting indexex
-    for (int i = 0; i < n; i++)
-    {
-        string temp = s.substr(i) + "#" + s;
-        int size = temp.size();
-        vector<int> z = computeZFunction(temp);
-
-        // Count substring occurrences
-        bool ok = false;
-        int index = -1;
-        for (int j = 0; j < size; j++)
-        {
-            if (ok)
-            {
-                count[i][0]++;
-                count[i][z[j]]--;
-                if (index > i)
-                {
-                    // here we have to update after considering the substring starting from i, because
-                    // if we starting from substring i, we are not including one time also
-                    maxZ[index] = max(maxZ[index], z[j]);
-                }
-                index++;
-            }
-            if (temp[j] == '?')
-            {
-                ok = true;
-                index = 0;
-            }
-        }
-
-        // Apply cumulative sum and handle overlaps
-        int sum = 0;
-        for (int len = 0; len <= n; len++)
-        {
-            int delta = count[i][len];
-            count[i][len] = sum;
-            sum += delta;
-
-            // Remove overlaps based on maxZ[i]
-            if (len <= maxZ[i])
-            {
-                count[i][len] = 0;
-            }
-        }
-    }
-
-    // Calculate final answers for each possible count
-    vector<int> ans(n + 1, 0);
-    for (int i = 0; i < n; i++)
-    {
-        for (int len = 0; len <= n; len++)
-        {
-            int total = count[i][len];
-            for (int r = 1; r <= total; r++)
-            {
-                ans[r] = (ans[r] + ncr[total][r]) % mod;
-            }
-        }
-    }
-
-    // Answer queries
-    for (int i = 0; i < q; i++)
-    {
-        int x;
-        cin >> x;
-        if (x > n)
-        {
-            cout << "0\n";
-        }
-        else
-        {
-            cout << ans[x] << "\n";
-        }
-    }
-}
-
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
+    ios ::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
-    int t;
-    cin >> t;
-    preCalculateNCR();
-    while (t--)
+    C[0][0] = 1;
+    for (int i = 1; i < N; i++)
+        for (int j = 0; j <= i; j++)
+        {
+            if (j == 0)
+                C[i][j] = C[i - 1][j];
+            else
+                C[i][j] = (C[i - 1][j] + C[i - 1][j - 1]) % MOD;
+        }
+
+    int nTest;
+    cin >> nTest;
+    while (nTest--)
     {
-        solve();
+        int n, q;
+        cin >> n >> q;
+        string s;
+        cin >> s;
+
+        vector<int> cntExact(n + 1, 0);
+        vector<int> cntAtleast(n + 1, 0);
+
+        for (int i = 0; i < n; i++)
+        {
+            string suffix = s.substr(i, n - i);
+            vector<int> z = zFunction(suffix);
+            vector<int> auxAdd(n + 2, 0);
+            for (int x : z)
+                auxAdd[1]++, auxAdd[x + 1]--;
+            for (int j = 1; j <= n; j++)
+                auxAdd[j] += auxAdd[j - 1];
+            for (int j = 1; j <= n; j++)
+                cntAtleast[auxAdd[j]]++;
+        }
+        cntExact[n] = cntAtleast[n];
+        for (int j = n - 1; j >= 1; j--)
+        {
+            cntExact[j] = cntAtleast[j] - cntAtleast[j + 1];
+        }
+
+        vector<int> ans(n + 1, 0);
+        for (int k = 1; k <= n; k++)
+            for (int i = k; i <= n; i++)
+                ans[k] = (ans[k] + 1LL * cntExact[i] * C[i][k]) % MOD;
+
+        for (int i = 1; i <= q; i++)
+        {
+            int k;
+            cin >> k;
+            if (k > n)
+                cout << 0 << '\n';
+            else
+                cout << ans[k] << '\n';
+        }
     }
 
     return 0;
