@@ -60,10 +60,10 @@ bool remove(Node* root, string s, int depth = 0)
     }
 
     int c = s[depth] - 'a';
-    if(!root-child[c])
+    if(!root->child[c])
         return false;
     bool isRemoved = remove(root->child[c], s, depth + 1);
-    Node& temp = *(root-child[c]);
+    Node& temp = *(root->child[c]);
     if(isRemoved && temp.count == 0 && isEmpty(temp))
     {
         delete root->child[c];
