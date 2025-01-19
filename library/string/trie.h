@@ -19,7 +19,7 @@ void add(Node* root, string s)
     {
         int c = ch - 'a';
         if(cur->child[c] == nullptr)
-            cur->child[c] - new Node();
+            cur->child[c] = new Node();
         cur = cur->child[c];
     }
     cur->count++;
