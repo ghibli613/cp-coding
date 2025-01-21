@@ -114,26 +114,29 @@ void solve()
 
     int ans = 0;
     multiset<int> s;
-    for(int i = sz, j = sz, cur = sz; i < n; i++)
+    for(int i = sz, j = sz, cnt = 0; i < n; i++)
     {
-        if(cur && j < n)
+        if(cnt == sz)
         {
-            s.insert(LCP[j]);
-            if(!taken[mark[SA[j]]])
-                cur--;
-            taken[mark[SA[j]]]++;
-            j++;
+            if(j < n)
+            {
+                s.insert(LCP[j]);
+                if(!taken[mark[SA[j]]])
+                    cnt++;
+                taken[mark[SA[j]]]++;
+                j++;
+            }
+            else
+                break;
         }
-        if(cur)
+        else
         {
-            if(j >= n) break;
-            continue;
+            s.erase(s.find(LCP[i]));
+            ans = max(ans, *s.begin());
+            taken[mark[SA[i]]]--;
+            if(!taken[mark[SA[i]]])
+                cnt--;
         }
-        s.erase(s.find(LCP[i]));
-        ans = max(ans, *s.begin());
-        taken[mark[SA[i]]]--;
-        if(!taken[mark[SA[i]]])
-            cur++;
     }
     cout << ans << '\n';
 }
