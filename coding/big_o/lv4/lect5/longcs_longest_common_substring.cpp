@@ -85,57 +85,79 @@ vector<int> computeLCP(const string& s, const vector<int>& SA)
 
 void solve()
 {
-    int sz; cin >> sz;
-    string tot;
-    for(int i = 0; i < sz; i++)
+    int num_s; cin >> num_s;
+    if(num_s == 1)
     {
-        string tmp; cin >> tmp;
-        tot += tmp + "$";
-    }
-    tot.pop_back();
-    tot.push_back('#');
-    if(sz == 1)
-    {
-        cout << tot.size() - 1 << '\n';
+        string s; cin >> s;
+        cout << (int)s.size() << '\n';
         return;
     }
-    int n = (int)tot.size();
-    vector<int> mark(n, -1), taken(n);
-    int visID = 0;
-    for(int i = 0; i < n; i++)
-    {
-        if(tot[i] != '$')
-            mark[i] = visID;
-        else 
-            visID++;
-    }
-    vector<int> SA = constructSA(tot);
-    vector<int> LCP = computeLCP(tot, SA);
 
-    int ans = 0;
-    multiset<int> s;
-    for(int i = sz, j = sz, cnt = 0; i < n; i++)
+    string S;
+    for(int i = 0; i < num_s; i++)
     {
-        if(cnt == sz)
+        string tmp; cin >> tmp;
+        S += tmp + "#";
+    }
+    S.pop_back();
+    S += "!";
+
+    vector<int> belong;
+    int cnt = 0;
+    for(int i = 0; i < (int)S.size(); i++)
+    {
+        if(S[i] == '#' || S[i] == '!')
         {
-            if(j < n)
+            belong.push_back(-1);
+            cnt++;
+        }
+        else 
+            belong.push_back(cnt);
+    }
+
+    cnt = 0;
+    vector<int> count(num_s, 0);
+    vector<int> SA = constructSA(S);
+    vector<int> LCP = computeLCP(S, SA);
+    int i = 0, ans = 0;
+    priority_queue <pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> heap;
+
+    // for(int j = 0; j < (int)SA.size(); j++) cout << SA[j] << ' ';
+    // cout << endl;
+    // for(int j = 0; j < (int)SA.size(); j++) cout << LCP[j] << ' ';
+    // cout << endl;
+    // for(int j = 0; j < (int)SA.size(); j++) cout << belong[SA[j]] << ' ';
+    // cout << endl;
+
+    for(int j = 0; j < (int)SA.size(); j++)
+    {
+        if(belong[SA[j]] != -1)
+        {
+            if(count[belong[SA[j]]] == 0)
             {
-                s.insert(LCP[j]);
-                if(!taken[mark[SA[j]]])
-                    cnt++;
-                taken[mark[SA[j]]]++;
-                j++;
+                cnt++;
+                count[belong[SA[j]]]++;
             }
             else
-                break;
+                count[belong[SA[j]]]++;
+
+            heap.push({LCP[j], j});
+
+            while(count[belong[SA[i]]] > 1)
+            {
+                count[belong[SA[i]]]--;
+                i++;
+            }
+            while(!heap.empty() && heap.top().second <= i)
+            {
+                heap.pop();
+            }
+            if(cnt == num_s && !heap.empty())
+                ans = max(heap.top().first, ans);
         }
         else
         {
-            s.erase(s.find(LCP[i]));
-            ans = max(ans, *s.begin());
-            taken[mark[SA[i]]]--;
-            if(!taken[mark[SA[i]]])
-                cnt--;
+            i++;
         }
     }
     cout << ans << '\n';
