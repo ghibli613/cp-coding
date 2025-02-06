@@ -59,7 +59,7 @@ void test()
         graph[u].push_back(v);
         graph[v].push_back(u);
     }
-    preprocess();
+    preprocess(1);
     cin >> q;
     while(q--)
     {
