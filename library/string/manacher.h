@@ -26,7 +26,6 @@ void test()
     for (int i = 0; i < (int)s.length(); i++)
         t[2 * i + 1] = s[i];
 
-    int ans = 0;
     vector<int> p = manacher(t);
     for (int i = 1; i < (int)p.size() - 1; i++)
     {
