@@ -51,7 +51,7 @@ void test()
         cin >> A[i];
 
     vector<int> dp, prev;
-    int pos = LIS(A, pd, prev);
+    int pos = LIS(A, dp, prev);
 
     cout << "LIS: " << dp[pos] << "\n";
     trace(A, prev, pos);
