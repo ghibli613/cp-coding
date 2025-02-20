@@ -3,13 +3,14 @@ using namespace std;
 
 typedef long long ll;
 
+double dp[1010][1010];
+
 void solve()
 {
     int n, k; cin >> n >> k;
     vector<double> p(n + 1);
     for(int i = 1; i <= n; i++) cin >> p[i];
 
-    vector<vector<double>> dp(n + 1, vector<double>(k + 1, 0));
     dp[0][0] = 1.0;
     for(int i = 1; i <= n; i++)
         for(int j = 0; j <= min(i, k); j++)
