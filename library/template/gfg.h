@@ -3,6 +3,9 @@ using namespace std;
 
 typedef long long ll;
 
+const int MOD = 1000000007;
+const int N = 100007; 
+
 void solve()
 {
 
