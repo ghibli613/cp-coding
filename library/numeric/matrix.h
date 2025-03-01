@@ -40,14 +40,14 @@ struct Matrix
         return I;
     }
 
-    static Matrix pow(const Matrix& A, ll k)
+    friend Matrix pow(const Matrix& A, ll k)
     {
         if(k == 0) return Identity(A.n);
         if(k == 1) return A;
-        Matrix TMP = pow(A, k / 2);
-        TMP = TMP * TMP;
+        Matrix Exp = pow(A, k / 2);
+        Exp = Exp * Exp;
         if(k & 1)
-            TMP = TMP * A;
-        return TMP;
+            Exp = Exp * A;
+        return Exp;
     }
 };
