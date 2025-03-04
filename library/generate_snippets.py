@@ -9,7 +9,7 @@ snippets = {}
 for subdir in os.walk('.'):
     for filename in subdir[2]:
         name, extension = filename.split('.')
-        if extension != 'h':
+        if extension != 'hpp':
             continue
 
         file_path = os.path.join(subdir[0], filename)
