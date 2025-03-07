@@ -105,6 +105,6 @@ int main()
     {
         cin >> x >> p >> k;
         factorize(p);
-        cout << binarySearch(1, 1e18) << endl;
+        cout << binarySearch(x + 1, 1e12) << endl;
     }
 }
