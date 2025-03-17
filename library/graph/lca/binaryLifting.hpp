@@ -19,7 +19,7 @@ void dfs(int u, int p)
 void preprocess(int root)
 {
     counter = 0;
-    dfs(root, root);
+    dfs(root, root - 1);
 
     for(int k = 1; k < level; k++)
         for(int i = 1; i <= n; i++)
