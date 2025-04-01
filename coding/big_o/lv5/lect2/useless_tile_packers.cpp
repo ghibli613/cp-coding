@@ -10,7 +10,11 @@ const double EPS = 1e-9;
 
 int cmp(double x, double y)
 {
-    return (x < y - EPS) ? -1 : (x > y + EPS);
+    if(x < y - EPS)
+        return -1;
+    else if(x > y + EPS)
+        return 1;
+    else return 0;
 }
 
 struct Point
@@ -19,18 +23,18 @@ struct Point
 
     Point(double _x = 0, double _y = 0) : x(_x), y(_y) {}
 
-    int cmp(const Point& q) const
+    int compare(const Point& q) const
     {
-        if(x != q.x) return ::cmp(x, q.x);
-        return ::cmp(y, q.y);
+        if(cmp(x, q.x) != 0) return cmp(x, q.x);
+        return cmp(y, q.y);
     }
 
-    bool operator>(const Point& q) const { return cmp(q) > 0; }
-    bool operator<(const Point& q) const { return cmp(q) < 0; }
-    bool operator==(const Point& q) const { return cmp(q) == 0; }
-    bool operator>=(const Point& q) const { return cmp(q) >= 0; }
-    bool operator<=(const Point& q) const { return cmp(q) <= 0; }
-    bool operator!=(const Point& q) const { return cmp(q) != 0; }
+    bool operator>(const Point& q) const { return compare(q) > 0; }
+    bool operator<(const Point& q) const { return compare(q) < 0; }
+    bool operator==(const Point& q) const { return compare(q) == 0; }
+    bool operator>=(const Point& q) const { return compare(q) >= 0; }
+    bool operator<=(const Point& q) const { return compare(q) <= 0; }
+    bool operator!=(const Point& q) const { return compare(q) != 0; }
 
     Point operator+(const Point& q) const
     {
@@ -127,7 +131,7 @@ void convexHull(Polygon& pts)
 {
     pivot = pts[0];
     for(int i = 1; i < (int)pts.size(); i++)
-        if(pivot.y > pts[i].y || (pivot.y == pts[i].y && pivot.x > pts[i].x))
+        if(cmp(pivot.y, pts[i].y) > 0 || (cmp(pivot.y, pts[i].y) == 0 && cmp(pivot.x, pts[i].x) > 0))
             pivot = pts[i];
     
     sort(pts.begin(), pts.end(), compare);
@@ -136,7 +140,7 @@ void convexHull(Polygon& pts)
     if(pts.size() < 3) return;
 
     int n = 0;
-    for(int i = 0; i < pts.size(); i++)
+    for(int i = 0; i < (int)pts.size(); i++)
     {
         while(n > 1 && ccw(pts[n - 2], pts[n - 1], pts[i]) <= 0) n--;
         pts[n++] = pts[i];
@@ -149,8 +153,18 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int t = 1;
-    cin >> t;
+    int n;
+    int testcase = 0;
+    while(cin >> n, n != 0)
+    {
+        Polygon p(n);
+        for(Point &point : p) cin >> point.x >> point.y;
+        double tile = area(p);
+        convexHull(p);
+        double container = area(p);
+        double wasted = 100 - (tile / container) * 100;
+        cout << "Tile #" << ++testcase << "\nWasted Space = " << fixed << setprecision(2) << wasted << " %\n\n";
+    }
 
     return 0;
 }

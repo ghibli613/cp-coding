@@ -2,7 +2,11 @@ const double EPS = 1e-9;
 
 int cmp(double x, double y)
 {
-    return (x < y - EPS) ? -1 : (x > y + EPS);
+    if(x < y - EPS)
+        return -1;
+    else if(x > y + EPS)
+        return 1;
+    else return 0;
 }
 
 struct Point
@@ -13,7 +17,7 @@ struct Point
 
     int cmp(const Point& q) const
     {
-        if(x != q.x) return ::cmp(x, q.x);
+        if(::cmp(x, q.x) != 0) return ::cmp(x, q.x);
         return ::cmp(y, q.y);
     }
 
