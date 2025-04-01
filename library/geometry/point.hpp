@@ -15,18 +15,18 @@ struct Point
 
     Point(double _x = 0, double _y = 0) : x(_x), y(_y) {}
 
-    int cmp(const Point& q) const
+    int compare(const Point& q) const
     {
-        if(::cmp(x, q.x) != 0) return ::cmp(x, q.x);
-        return ::cmp(y, q.y);
+        if(cmp(x, q.x) != 0) return cmp(x, q.x);
+        return cmp(y, q.y);
     }
 
-    bool operator>(const Point& q) const { return cmp(q) > 0; }
-    bool operator<(const Point& q) const { return cmp(q) < 0; }
-    bool operator==(const Point& q) const { return cmp(q) == 0; }
-    bool operator>=(const Point& q) const { return cmp(q) >= 0; }
-    bool operator<=(const Point& q) const { return cmp(q) <= 0; }
-    bool operator!=(const Point& q) const { return cmp(q) != 0; }
+    bool operator>(const Point& q) const { return compare(q) > 0; }
+    bool operator<(const Point& q) const { return compare(q) < 0; }
+    bool operator==(const Point& q) const { return compare(q) == 0; }
+    bool operator>=(const Point& q) const { return compare(q) >= 0; }
+    bool operator<=(const Point& q) const { return compare(q) <= 0; }
+    bool operator!=(const Point& q) const { return compare(q) != 0; }
 
     Point operator+(const Point& q) const
     {
