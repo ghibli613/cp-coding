@@ -44,3 +44,11 @@ bool areIntersect(Line l1, Line l2, Point &p)
     p = Point(dx / d, dy / d);
     return true;
 }
+
+double distToLine(Point p, Point a, Point b, Point &c)
+{
+    Point ap = p - a, ab = b - a;
+    double k = ap.dot(ab) / ab.norm();
+    c = a + (ab * k);
+    return (p - c).len();
+}
