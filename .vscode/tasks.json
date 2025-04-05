@@ -14,8 +14,6 @@
                     "-Wfloat-equal",
                     "-pedantic",
                     "-std=c++20",
-                    "-D_GLIBCXX_DEBUG",
-                    "-D_GLIBCXX_DEBUG_PEDANTIC",
                     "${file}",
                     "-o",
                     "${fileDirname}/${fileBasenameNoExtension}"
@@ -30,8 +28,6 @@
                     "-Wfloat-equal",
                     "-pedantic",
                     "-std=c++20",
-                    "-D_GLIBCXX_DEBUG",
-                    "-D_GLIBCXX_DEBUG_PEDANTIC",
                     "${file}",
                     "-o",
                     "${fileDirname}\\${fileBasenameNoExtension}"
