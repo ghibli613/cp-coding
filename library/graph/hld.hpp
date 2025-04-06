@@ -69,12 +69,12 @@ long long queryPath(int u, int v)
     return res + query(in[u], in[v]);
 }
 
-void tes()
+void test()
 {
     int q;
     cin >> n >> q;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
+    vector<int> a(n + 1);
+    for (int i = 1; i <= n; i++)
         cin >> a[i];
     
     graph.resize(n + 1);
@@ -93,7 +93,7 @@ void tes()
     */
     // cach 2: build tree
     vector<long long> temp(n);
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
         temp[in[i]] = a[i];
     buildTree(temp);
     int t, u, v;
