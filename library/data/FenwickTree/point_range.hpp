@@ -32,7 +32,7 @@ struct FenwickTree
 
     T sumRange(int l, int r)
     {
-        return getSum(r) - getSum(l);
+        return getSum(r) - getSum(l - 1);
     }
 
     void updateRange(int l, int r, T val)
