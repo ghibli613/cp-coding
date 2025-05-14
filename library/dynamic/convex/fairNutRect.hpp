@@ -62,6 +62,17 @@ ll query(ll x)
     return res;
 }
 
+ll query1(ll x)
+{
+    int n_cht = cht.size();
+    while(n_cht > 1 && cht[n_cht - 1].intersectX(cht[n_cht - 2]) >= x)
+    {
+        cht.pop_back();
+        n_cht--;
+    }
+    return cht[n_cht - 1].eval(x);
+}
+
 void test()
 {
     cin >> n;
