@@ -44,18 +44,16 @@ deque<Line> cht; // convex hull trict
 void add(ll a, ll b)
 {
     Line line(a, b);
-    while((int)cht.size() >= 2 && cht[n - 1].intersectX(cht[n - 2]) >= cht[n - 1].intersectX(line))
+    while((int)cht.size() >= 2 && cht[(int)cht.size() - 1].intersectX(cht[(int)cht.size() - 2]) >= cht[(int)cht.size() - 1].intersectX(line))
         cht.pop_back();
     cht.push_back(line);
 }
 
 ll query(ll x)
 {
-    int n = cht.size();
-    while(n > 1 && cht[0].intersectX(cht[1]) <= x)
+    while((int)cht.size() > 1 && cht[0].intersectX(cht[1]) <= x)
     {
         cht.pop_front();
-        n--;
     }
     return cht[0].eval(x);
 }
@@ -92,9 +90,9 @@ int main()
     for(int i = 0; i < n; i++)
     {
         res = query(rects[i].l);
-        cout << res << ' ';
         if(i < n - 1)
             add(rects[i + 1].w, res);
+        // dbg(i, rects[i + 1].w, res, cht.size());
     }
     cout << res;
 

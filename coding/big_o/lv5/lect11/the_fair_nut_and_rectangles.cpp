@@ -1,3 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+
+const int MOD = 1e9 + 7;
+const int N = 1e5 + 7;
+
 struct Line
 {
     ll a, b;
@@ -62,8 +70,11 @@ ll query(ll x)
     return res;
 }
 
-void test()
+int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
     cin >> n;
     ll x, y, a;
 
@@ -85,4 +96,6 @@ void test()
         add(-x, temp);
     }
     cout << res;
+
+    return 0;
 }
