@@ -21,7 +21,7 @@ void addEdge(int u, int v, int cap)
     edges.push_back({v, u, 0});
 }
 
-int bfs(int s, int t)
+bool bfs(int s, int t)
 {
     queue<int> q;
     q.push(s);
@@ -73,7 +73,7 @@ int dinic(int s, int t)
     while(bfs(s, t))
     {
         memset(iter, 0, sizeof(iter));
-        while((newFlow = dfs(s, t, INF)))
+        while((newFlow = dfs(s, t, INF)) > 0)
         {
             sumFlow += newFlow;
         }
